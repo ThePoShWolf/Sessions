@@ -4,4 +4,4 @@ Hello! This is the collection of presentations that I've either given or am work
 
 ## License
 
-All this content is licensed with the [CC-BY-SA-4.0](https://choosealicense.com/licenses/cc-by-sa-4.0/) license. Please familiarize yourself with that license before reusing my work. You are absolutely welcome to use anything you find in this repository though.
+You are welcome to use anything you find in this repository! Just be sure to familiarize yourself with the  [CC-BY-SA-4.0](https://choosealicense.com/licenses/cc-by-sa-4.0/) license. It doesn't matter to me what you use this content for, all you need to do is to license it with the same license and attribute me.
