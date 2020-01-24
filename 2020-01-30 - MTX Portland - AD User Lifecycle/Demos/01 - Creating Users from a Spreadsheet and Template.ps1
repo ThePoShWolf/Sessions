@@ -8,6 +8,11 @@
 $SpreadSheet = '.\UserUpdate.xlsx'
 $Data = Import-Excel $SpreadSheet
 
+# Cleanup from practice run
+foreach ($user in $Data){
+    Remove-Aduser "$($user.'First Name').$($user.'Last Name')" -Confirm:$false
+}
+
 # Check the data
 $Data | Format-Table
 
@@ -58,6 +63,8 @@ If($user.Manager.length -gt 0){
 $params['SamAccountName'] = "$($user.$($expectedProperties['GivenName'])).$($user.$($expectedProperties['SurName']))"
 # Create the user
 New-ADUser @params
+
+Get-ADUser $params.SamAccountName
 
 #endregion
 
@@ -112,6 +119,12 @@ ForEach($user in $data){
 #endregion
 
 #region Create a template user
+
+# Cleanup
+Remove-ADUser 'Template User' -Confirm:$false
+Remove-ADUser 'Walter White' -Confirm:$false
+
+# Create the template user
 New-ADUser -Name 'Template User' -Enabled $false
 
 # Set all your template properties
@@ -135,6 +148,8 @@ $user = Get-ADUser 'Template User' -Properties StreetAddress,City,State,PostalCo
 # Create a single user from that
 New-ADUser 'Walter White' -GivenName 'Walter' -Surname 'White' -Instance $user
 
+Get-ADUser 'Walter White' -Properties StreetAddress,City,State,PostalCode,MemberOf
+
 # Check Groups
 (Get-ADUser 'Walter White' -Properties MemberOf).MemberOf
 
@@ -144,7 +159,6 @@ ForEach($group in $user.MemberOf){
 }
 
 # Verify
-Get-ADUser 'Walter White' -Properties StreetAddress,City,State,PostalCode
 (Get-ADUser 'Walter White' -Properties MemberOf).MemberOf
 
 #endregion
@@ -216,6 +230,11 @@ Function Import-ADUsersFromSpreadsheet {
             }
         }
     }
+}
+
+# Cleanup
+foreach ($user in $Data){
+    Remove-Aduser "$($user.'First Name').$($user.'Last Name')" -Confirm:$false
 }
 
 # Usage
