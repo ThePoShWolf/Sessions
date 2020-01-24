@@ -1,4 +1,8 @@
 #region Define 'stale'
+<# Example definition:
+    - Has not logged in in 90 days
+    - Has never logged in and is older than 2 weeks
+#>
 # Using Search-ADAccount
 Search-ADAccount -AccountInactive -TimeSpan '90.00:00:00' -UsersOnly
 
@@ -7,7 +11,7 @@ Search-ADAccount -AccountInactive -TimeSpan '90.00:00:00' -UsersOnly
 Get-ADUser administrator -Properties LastLogonTimeStamp | Select-Object Name,LastLogonTimeStamp
 
 # If it is older than $LogonDate
-$LogonDate = (Get-Date).AddHours(-1).ToFileTime()
+$LogonDate = (Get-Date).AddDays(-1).ToFileTime()
 Get-ADUser -Filter {LastLogonTimeStamp -lt $LogonDate}
 
 # If it doesn't have value
@@ -44,6 +48,9 @@ Function Get-ADStaleUsers {
 
 # Usage
 Get-ADStaleUsers
+
+# We can pipe
+Get-ADStaleUsers | Select Name,SamAccountName
 
 # Usage
 Get-ADStaleUsers -NoLogonSince (Get-Date).AddDays(-30) -CreatedBefore (Get-Date).AddDays(-7) | Remove-ADUser -WhatIf
