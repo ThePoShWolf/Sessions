@@ -23,7 +23,7 @@ Invoke-RestMethod -Uri 'https://api.stackexchange.com/2.2/answers?order=desc&sor
 
 ### Breakdown
 
-$baseUri = 'https://api.stackexchange.com/2.2/'
+$baseUri = 'https://api.stackexchange.com/2.2'
 
 $resource = 'answers'
 
@@ -41,18 +41,44 @@ Invoke-RestMethod -Uri $uri
 
 # Method
 
-help Invoke-RestMethod -Parameter Method
+## Basic:
+Invoke-RestMethod -Method 'Post' -Uri 'SomeUri'
 
-# Body
+# Common Headers
 
+## v5.1
+$headers = @{
+    'Content-Type' = 'application/json'
+    'Accept' = 'application/json'
+}
 
+Invoke-RestMethod -Headers $headers
 
-#endregion
+## v6+
+$headers = @{
+    'Accept' = 'application/json'
+}
+Invoke-RestMethod -ContentType 'application/json'
 
-#region Headers
-# Common
+## Post a user to Octopus
+$apiKey = 'API-9M1UYY2H8ZRBJIN7CG4MNJLEA7A' # never save api tokens in plain text
+$baseUri = 'http://192.168.11.8/api'
+$resource = 'users'
 
-# Custom
+$htBody = @{
+    Username = 'NewUser'
+    DisplayName = 'New User'
+    Password = 'Password1234!'
+}
+
+$jsonBody = $htBody | ConvertTo-Json
+
+$headers = @{
+    'X-Octopus-ApiKey' = $apiKey
+    'Content-Type' = 'application/json'
+}
+
+Invoke-RestMethod $baseUri/$resource -Method Post -Headers $headers -Body $jsonBody
 
 #endregion
 
