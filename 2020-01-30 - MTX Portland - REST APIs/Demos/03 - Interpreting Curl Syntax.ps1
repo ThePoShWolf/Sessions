@@ -1,8 +1,7 @@
 # Getting items from Airtable
 $token = Get-Content C:\users\AnthonyHowell\Documents\at.txt
 ## curl
-curl https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items \
--H "Authorization: Bearer YOUR_API_KEY"
+curl https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items -H "Authorization: Bearer YOUR_API_KEY"
 
 ## PowerShell
 $headers = @{
@@ -58,3 +57,10 @@ $body = @{
 } | ConvertTo-Json
 
 Invoke-RestMethod -Uri 'https://api.airtable.com/v0/appTczXUIAllL0x88/Clients' -Headers $headers -Body $body
+
+# Curl2PS
+## Import dev version
+Import-Module ..\Curl2PS\build\Curl2PS
+
+## Convert
+ConvertTo-IRM 'curl https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items -H "Authorization: Bearer YOUR_API_KEY"' -String
