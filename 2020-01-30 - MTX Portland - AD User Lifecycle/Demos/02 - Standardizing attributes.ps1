@@ -15,11 +15,17 @@ Get-ADUser -Filter $filterString -Properties $properties | Format-Table $propert
 #endregion
 
 #region Manager Property
+
+# Prep
+New-ADUser 'Jesse.Pinkman'
+Set-ADUser 'Jesse.Pinkman' -Manager 'Walter White'
+
 # We can filter for specific managers
 Get-ADUser -Filter {Manager -eq 'Walter White'}
 
 # But not empty manager
 Get-ADUser -Filter {Manager -eq ''}
+Get-ADUser -Filter {Manager -notlike '*'}
 
 # Using an LDAPFilter
 Get-ADUser -LDAPFilter "(!manager=*)" -Properties Manager | Format-Table Name,Manager
@@ -122,6 +128,11 @@ $exportExcelParams = @{
 Get-ADUsersMissingInfo | Select-Object $properties |
 Export-Excel .\MissingProperties.xlsx -Title 'Missing Properties' @exportExcelParams
 
-Import-Excel .\MissingProperties.xlsx -StartRow 2
+Import-Excel .\MissingProperties.xlsx -StartRow 2 | Format-Table
+
+# Copy spreadsheet to local to look at it
+Exit
+Copy-Item -FromSession $Sessions[0] -Path C:\Users\administrator\documents\MissingProperties.xlsx -Destination '.\2020-01-30 - MTX Portland - AD User Lifecycle\Demos\02 - MissingProperties.xlsx'
+Start '.\2020-01-30 - MTX Portland - AD User Lifecycle\Demos\02 - MissingProperties.xlsx'
 
 #endregion
