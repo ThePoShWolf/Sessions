@@ -61,7 +61,9 @@ $headers = @{
 Invoke-RestMethod -ContentType 'application/json'
 
 ## Post a user to Octopus
-$apiKey = 'API-9M1UYY2H8ZRBJIN7CG4MNJLEA7A' # never save api tokens in plain text
+$apiKey = 'API-9M1UYY2H8ZRBJIN7CG4MNJLEA7A'
+#never save api tokens in plain text
+#this is for a demo server
 $baseUri = 'http://192.168.11.8/api'
 $resource = 'users'
 
@@ -80,11 +82,56 @@ $headers = @{
 
 Invoke-RestMethod $baseUri/$resource -Method Post -Headers $headers -Body $jsonBody
 
+## Now get that user
+
+Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers
+
+$users = (Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers).Items
+
 #endregion
 
 #region Authentication
-# v5.1 in the headers
+## Basic Auth
+### v5.1 in the headers
+$apiKey = Get-Content C:\Users\AnthonyHowell\Documents\azdo.txt
+$base64Auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(("username:$apiKey")))
+$headers = @{
+    Authorization = "Basic $base64Auth"
+    Accept = "application/json; api-version=5.1"
+    'Content-Type' = 'application/json'
+}
 
-# v6+ -Authentication
+Invoke-RestMethod -Uri 'https://dev.azure.com/theposhwolf/curl2ps/_apis/build/builds' -Headers $headers
+
+### v6+ -Authentication
+$securePassword = ConvertTo-SecureString $apiKey -AsPlainText -Force
+$cred = [pscredential]::new('username',$securePassword)
+$params = @{
+    URI = 'https://dev.azure.com/theposhwolf/curl2ps/_apis/build/builds'
+    Headers = $headers
+    Authentication = 'Basic'
+    Credential = $cred
+}
+Invoke-RestMethod @params
+
+## OAuth (bearer token)
+
+### v5.1
+$token = Get-Content C:\users\AnthonyHowell\Documents\at.txt
+$headers = @{
+    Authorization = "Bearer $token"
+    Accept = 'application/json'
+}
+Invoke-RestMethod -Uri 'https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items' -Headers $headers
+
+### v6
+$token = Get-Content C:\users\AnthonyHowell\Documents\at.txt
+$secureToken = ConvertTo-SecureString $token -AsPlainText -Force
+$params = @{
+    Uri = 'https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items'
+    Authentication = 'OAuth'
+    Token = $secureToken
+}
+Invoke-RestMethod @params
 
 #endregion
