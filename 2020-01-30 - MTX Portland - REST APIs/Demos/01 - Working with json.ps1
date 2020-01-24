@@ -7,6 +7,7 @@ $jsonFile = '.\2020-01-30 - MTX Portland - REST APIs\Demos\01 - Data.json'
 ## Reading it into a psobject
 $json = Get-Content $jsonFile | ConvertFrom-Json
 
+$json
 $json.items
 $json.items[0]
 $json.items[0].owner
