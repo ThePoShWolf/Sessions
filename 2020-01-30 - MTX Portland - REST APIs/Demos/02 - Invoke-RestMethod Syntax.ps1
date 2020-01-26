@@ -92,6 +92,7 @@ $users = (Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers).It
 
 #region Authentication
 ## Basic Auth
+## example source: https://docs.microsoft.com/en-us/rest/api/azure/devops/build/builds/list?view=azure-devops-rest-5.1
 ### v5.1 in the headers
 $apiKey = Get-Content C:\Users\AnthonyHowell\Documents\azdo.txt
 $base64Auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(("username:$apiKey")))
