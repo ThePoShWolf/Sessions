@@ -49,16 +49,20 @@ $headers = @{
 
 $body = @{
     records = @(
+      @{
         fields = @{
             workitems = @("reczwzBP3ygLPraYu","recFFxoFVGrMPtbSE","recGKApP4vqYZpeZI")
             Name = 'Marina Shop'
-        },
-        @{
+        }
+      },
+      @{
+        fields = @{
             workitems = @("reczyGwJ6AiXVq9TA")
             Name = 'South Lake Store'
         }
+      }
     )
-} | ConvertTo-Json
+} | ConvertTo-Json -Depth 6
 
 Invoke-RestMethod -Method Post -Uri 'https://api.airtable.com/v0/appTczXUIAllL0x88/Clients' -Headers $headers -Body $body
 #endregion
@@ -73,8 +77,10 @@ curl --request GET 'https://ncg1in-8d1rag:5nuauzj5pkfftlz3fmyksmyhat6j35kf@api.s
 $auth = Get-Content C:\users\AnthonyHowell\Documents\sd.txt | ConvertFrom-Json
 # using their values
 $encodedAuth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes('ncg1in-8d1rag:5nuauzj5pkfftlz3fmyksmyhat6j35kf'))
+
 # using actual values
 $encodedAuth = [Convert]::ToBase64String([System.Text.Encoding]::UTF8.GetBytes("$($auth.username):$($auth.password)"))
+
 $headers = @{
     Authorization = "Basic $encodedAuth"
     Accept = 'application/json'
@@ -91,5 +97,5 @@ Import-Module ..\Curl2PS\build\Curl2PS
 ## Convert
 ConvertTo-IRM 'curl https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items -H "Authorization: Bearer YOUR_API_KEY"' -String
 
-ConvertTo-IRM "curl --request GET 'https://ncg1in-8d1rag:5nuauzj5pkfftlz3fmyksmyhat6j35kf@api.sherpadesk.com/tickets?status=open,onhold&role=user&limit=6&format=json'" -String
+ConvertTo-IRM "curl --request GET https://ncg1in-8d1rag:5nuauzj5pkfftlz3fmyksmyhat6j35kf@api.sherpadesk.com/tickets?status=open,onhold&role=user&limit=6&format=json" -String
 #endregion

@@ -23,16 +23,16 @@ $headers = @{
 
 ## Build the query string
 $queryParamNames = 'Status','Role','Limit','Format'
-$queryArr = foreach ($param in ($PSBoundParameters.Keys | Where-Object ($queryParamNames -contains $_))) {
+$queryArr = foreach ($param in ($PSBoundParameters.Keys | Where-Object {$queryParamNames -contains $_})) {
     "$param=$($PSBoundParameters[$param] -join ',')"
 }
 
 ## Building the URI
 $baseUri = 'https://api.sherpadesk.com'
 $resource = 'tickets'
-$params = $queryArr -join '&'
+$query = ($queryArr -join '&').ToLower()
 
-$uri = "$baseUri/$resource`?$paramArr"
+$uri = "$baseUri/$resource`?$query"
 
 ## Making the call
 Invoke-RestMethod -Uri $uri -Method Get

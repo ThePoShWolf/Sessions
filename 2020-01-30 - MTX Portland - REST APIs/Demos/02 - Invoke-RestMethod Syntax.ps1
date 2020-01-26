@@ -59,7 +59,7 @@ Invoke-RestMethod -Headers $headers
 $headers = @{
     'Accept' = 'application/json'
 }
-Invoke-RestMethod -ContentType 'application/json'
+Invoke-RestMethod -ContentType 'application/json' -Headers $headers
 
 ## Post a user to Octopus
 $apiKey = 'API-9M1UYY2H8ZRBJIN7CG4MNJLEA7A'
@@ -70,7 +70,7 @@ $baseUri = 'http://192.168.11.8/api'
 $resource = 'users'
 
 $htBody = @{
-    Username = 'NewUser'
+    Username = 'NewUser1'
     DisplayName = 'New User'
     Password = 'Password1234!'
 }
@@ -82,13 +82,13 @@ $headers = @{
     'Content-Type' = 'application/json'
 }
 
-Invoke-RestMethod $baseUri/$resource -Method Post -Headers $headers -Body $jsonBody
+Invoke-RestMethod -Uri $baseUri/$resource -Method Post -Headers $headers -Body $jsonBody
 
 ## Now get that user
 
 Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers
 
-$users = (Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers).Items
+(Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers).Items
 #endregion
 #endregion
 
