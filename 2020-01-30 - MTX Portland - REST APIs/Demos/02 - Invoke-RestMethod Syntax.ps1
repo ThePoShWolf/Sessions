@@ -1,5 +1,5 @@
 #region Common
-# URI
+#region URI
 ## Uri breakdown
 
 <#
@@ -38,13 +38,14 @@ $uri = "$baseUri/$resource`?$queries"
 $uri
 
 Invoke-RestMethod -Uri $uri
+#endregion
 
 # Method
 
 ## Basic:
 Invoke-RestMethod -Method 'Post' -Uri 'SomeUri'
 
-# Common Headers
+#region Common Headers
 
 ## v5.1
 $headers = @{
@@ -64,6 +65,7 @@ Invoke-RestMethod -ContentType 'application/json'
 $apiKey = 'API-9M1UYY2H8ZRBJIN7CG4MNJLEA7A'
 #never save api tokens in plain text
 #this is for a demo server
+
 $baseUri = 'http://192.168.11.8/api'
 $resource = 'users'
 
@@ -87,15 +89,18 @@ Invoke-RestMethod $baseUri/$resource -Method Post -Headers $headers -Body $jsonB
 Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers
 
 $users = (Invoke-RestMethod $baseUri/$resource -Method Get -Headers $headers).Items
-
+#endregion
 #endregion
 
 #region Authentication
 ## Basic Auth
 ## example source: https://docs.microsoft.com/en-us/rest/api/azure/devops/build/builds/list?view=azure-devops-rest-5.1
+
 ### v5.1 in the headers
 $apiKey = Get-Content C:\Users\AnthonyHowell\Documents\azdo.txt
+
 $base64Auth = [Convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(("username:$apiKey")))
+
 $headers = @{
     Authorization = "Basic $base64Auth"
     Accept = "application/json; api-version=5.1"

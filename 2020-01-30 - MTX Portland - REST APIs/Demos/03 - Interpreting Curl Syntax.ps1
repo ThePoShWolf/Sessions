@@ -1,4 +1,4 @@
-# Getting items from Airtable
+#region Getting items from Airtable
 $token = Get-Content C:\users\AnthonyHowell\Documents\at.txt
 ## curl
 # link: https://airtable.com/appTczXUIAllL0x88/api/docs#curl/table:work%20items:list
@@ -10,8 +10,9 @@ $headers = @{
     Authorization = "Bearer $token"
 }
 Invoke-RestMethod -Uri 'https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items' -Headers $headers
+#endregion
 
-# Creating items in Airtable
+#region Creating items in Airtable
 ## curl
 # link: https://airtable.com/appTczXUIAllL0x88/api/docs#curl/table:clients:create
 curl -v -X POST https://api.airtable.com/v0/appTczXUIAllL0x88/Clients \
@@ -60,8 +61,9 @@ $body = @{
 } | ConvertTo-Json
 
 Invoke-RestMethod -Method Post -Uri 'https://api.airtable.com/v0/appTczXUIAllL0x88/Clients' -Headers $headers -Body $body
+#endregion
 
-# Basic Authentication
+#region Basic Authentication
 # link: https://documenter.getpostman.com/view/4454237/apisherpadeskcom-playground/RW8AooQg?version=latest#6a1f8cfa-8910-8c9f-2e68-bfaefb51920b
 
 ## curl
@@ -78,8 +80,9 @@ $headers = @{
     Accept = 'application/json'
 }
 Invoke-RestMethod -Uri 'https://api.sherpadesk.com/tickets?status=open,onhold&role=user&limit=6&format=json' -Headers $headers
+#endregion
 
-# Curl2PS
+#region Curl2PS
 ## curl man pages: https://curl.haxx.se/docs/manpage.html
 
 ## Import dev version
@@ -89,3 +92,4 @@ Import-Module ..\Curl2PS\build\Curl2PS
 ConvertTo-IRM 'curl https://api.airtable.com/v0/appTczXUIAllL0x88/Work%20Items -H "Authorization: Bearer YOUR_API_KEY"' -String
 
 ConvertTo-IRM "curl --request GET 'https://ncg1in-8d1rag:5nuauzj5pkfftlz3fmyksmyhat6j35kf@api.sherpadesk.com/tickets?status=open,onhold&role=user&limit=6&format=json'" -String
+#endregion
