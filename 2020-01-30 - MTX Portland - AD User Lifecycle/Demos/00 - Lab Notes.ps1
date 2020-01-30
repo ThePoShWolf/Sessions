@@ -11,3 +11,8 @@ Function New-LabSessions {
         $global:Sessions += New-PSSession $comp -Credential $cred
     }
 }
+
+$PSVersionTable
+
+New-LabSessions
+Enter-PSSession $Sessions[0]
