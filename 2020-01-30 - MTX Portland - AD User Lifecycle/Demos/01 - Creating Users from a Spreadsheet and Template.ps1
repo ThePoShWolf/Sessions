@@ -123,6 +123,9 @@ ForEach($user in $data){
 # Cleanup
 Remove-ADUser 'Template User' -Confirm:$false
 Remove-ADUser 'Walter White' -Confirm:$false
+foreach ($user in $Data){
+    Remove-Aduser "$($user.'First Name').$($user.'Last Name')" -Confirm:$false
+}
 
 # Create the template user
 New-ADUser -Name 'Template User' -Enabled $false
@@ -221,6 +224,7 @@ Function Import-ADUsersFromSpreadsheet {
             If($PSCmdlet.ParameterSetName -eq 'Plain'){
                 New-ADUser @params
             }ElseIf($PSCmdlet.ParameterSetName -eq 'FromTemplate'){
+                # Copy template properties
                 $props = $Properties + 'MemberOf'
                 $template = Get-ADUser $TemplateUser -Properties $props
                 New-ADUser @params -Instance $template
