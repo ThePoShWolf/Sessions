@@ -3,6 +3,9 @@
 # Define needed info
 $properties = 'Name','Department','Title','GivenName','SurName'
 
+# Example filter string
+Get-ADUser -Filter "Name -notlike '*'"
+
 # Build a filter
 $filterString = "($($properties[0]) -notlike '*')"
 For($x=1;$x -lt $properties.count; $x++){
@@ -12,9 +15,15 @@ $filterString
 
 # Get those users
 Get-ADUser -Filter $filterString -Properties $properties | Format-Table $properties
+
+# Bonus
+Get-ADUser -Filter $filterString -Properties $properties | Select $properties | Export-Excel .\MissingProps.xlsx -TableName 'Props'
 #endregion
 
 #region Manager Property
+
+# Cleanup
+Remove-ADUser 'Jesse.Pinkman' -Confirm:$false
 
 # Prep
 New-ADUser 'Jesse.Pinkman'
@@ -135,4 +144,6 @@ Exit
 Copy-Item -FromSession $Sessions[0] -Path C:\Users\administrator\documents\MissingProperties.xlsx -Destination '.\2020-01-30 - MTX Portland - AD User Lifecycle\Demos\02 - MissingProperties.xlsx'
 Start '.\2020-01-30 - MTX Portland - AD User Lifecycle\Demos\02 - MissingProperties.xlsx'
 
+# Re-enter session
+Enter-PSSession $Sessions[0]
 #endregion
