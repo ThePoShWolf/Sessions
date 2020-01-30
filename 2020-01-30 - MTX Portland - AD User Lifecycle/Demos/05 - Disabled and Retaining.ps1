@@ -1,6 +1,7 @@
 #region
 # Prep
-New-ADUser 'Jesse.Pinkman' -Description 'Partner'
+Set-ADAccountPassword 'Jesse.Pinkman' -NewPassword (ConvertTo-SecureString 'Password1234!' -AsPlainText -Force) -Reset
+Set-ADUser 'Jesse.Pinkman' -Description 'Partner' -Enabled $true
 
 # Disable a user account
 $user = Get-ADUser 'Jesse.Pinkman' -Properties Description
