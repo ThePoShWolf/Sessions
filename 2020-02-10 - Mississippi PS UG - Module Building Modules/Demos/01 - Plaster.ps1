@@ -87,6 +87,10 @@ Remove-Item .\TestModule
     />
     <file
       source=''
+      destination='src\classes'
+    />
+    <file
+      source=''
       destination='src\private'
     />
     <file
@@ -105,8 +109,8 @@ Remove-Item .\TestModule
       destination='${PLASTER_PARAM_ModuleName}.Build.ps1'
     />
     <file
-      source='Module.Deploy.ps1'
-      destination='${PLASTER_PARAM_ModuleName}.Deploy.ps1'
+      source='Module.PSDeploy.ps1'
+      destination='${PLASTER_PARAM_ModuleName}.PSDeploy.ps1'
     />
     <file
       source='onload.ps1'
