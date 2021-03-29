@@ -15,19 +15,69 @@ $sampleUserDn = 'CN=ThePoShWolf,OU=Oregon,OU=Users,DC=theposhwolf,DC=com'
 '\\.'
 
 # Combined with an asterisk to capture 1 or more:
-'([^\,]|\\.)*'
+'([^\,]|\\.)+'
 
 # Combined with our start we get:
-$sampleUserDn -match '^CN=([^\,]|\\.)*';$Matches
+$sampleUserDn -match '^CN=([^\,]|\\.)+,';$Matches
 
 # We can add a group to capture the cn of the user
 # And uncapture the last group:
-$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)*)';$Matches
+$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),';$Matches
 $Matches.cn
 
 #endregion
 
-# First, we can validate if it is a valid DN:
-$sampleUserDn -match '^CN=([^\,]|\\.)*,((OU|CN)=([^\,]|\\.)*,)*(DC=([^\,]|\\.)*,)*(DC=([^\,]|\\.)*)$'
+#region Path
+$userRegex = '^CN=(?<cn>(?:[^\,]|\\.)+),'
 
-'^CN=(?<cn>(?:[^\,]|\\.)*),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)*,)*(?<domain>(?:DC=(?:[^\,]|\\.)*,)*(?:DC=(?:[^\,]|\\.)*)))$'
+# The user will be in an OU or container, so we'll need to account for either:
+'(OU|CN)'
+
+# And the name of said container or OU uses the same naming requirements as the user's CN,
+# so we'll use the same regex:
+'(OU|CN)=(?:[^\,]|\\.)+'
+
+# And the user could be in nested OUs or containers, so we'll account for 1 or more:
+'((OU|CN)=(?:[^\,]|\\.)*,)+'
+
+# Adding it to the userRegex:
+$sampleUserDn -match "$userRegex((OU|CN)=([^\,]|\\.)+,)*";$Matches
+
+# And then we'll clean up the groupings:
+$sampleUserDn -match "$userRegex(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*)";$Matches
+
+#endregion
+
+#region Domain
+$pathRegex = '(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*)'
+
+# We know the domain section starts with DC:
+'DC='
+
+# And for the domain name, we can use a stricter character set
+# Characters, digits, and hyphens, but it can't start or end with a hyphen
+# This is where a lookahead can come into play:
+'(?!-)[a-zA-Z0-9-]+(?<!-)'
+
+# so for the domain:
+'DC=(?!-)[a-zA-Z0-9-]+(?<!-)'
+
+# And since we may be in a subdomain:
+'(DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+'
+
+# And accounting for the TLD (including length):
+'(DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))'
+
+# Testing that with our existing regex:
+$sampleUserDn -match "$userRegex$PathRegex(DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))$";$Matches
+
+# Adding in the grouping:
+$sampleUserDn -match "$userRegex$PathRegex(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-)))$";$Matches
+
+#endregion
+
+#region Final Product
+
+$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))';$Matches
+
+#endregion
