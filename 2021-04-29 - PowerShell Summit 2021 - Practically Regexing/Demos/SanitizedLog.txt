@@ -1,0 +1,46 @@
+SOURCE: { ADPID01, FirstName LastName, email@theposhwolf.com }   
+DEST  : { email@theposhwolf.com, FirstName LastName (FirstName LastName) }   
+emails[work].value is different: old= "email@theposhwolf.com", new= "email@theposhwolf.com"   
+userName is different: old= "email@theposhwolf.com", new= "email@theposhwolf.com"   
+ENT.department is different: old= "", new= "Department of Regexing"   
+ENT.division is different: old= "", new= "PowerShell Division"   
+ENT.employeeNumber is different: old= "", new= "empnumber"   
+ENT.manager is different: old= "email@theposhwolf.com", new= "email@theposhwolf.com"   
+IAN.physicalDeliveryOfficeName is different: old= "Eugene", new= "Portland"   
+email@theposhwolf.com: report only, no update   
+--------------------------------------------------------------------------------   
+SOURCE: { ADPID02, FirstName LastName, email@theposhwolf.com }   
+DEST  : { email@theposhwolf.com, FirstName LastName (FirstName LastName) }   
+title is different: old= "Cool Person", new= "Cooler Person"   
+ENT.division is different: old= "", new= "PowerShell Division"   
+ENT.employeeNumber is different: old= "", new= "empnumber"   
+IAN.physicalDeliveryOfficeName is different: old= "", new= "London"   
+email@theposhwolf.com: report only, no update   
+--------------------------------------------------------------------------------   
+SOURCE: { ADPID03, FirstName LastName, email@theposhwolf.com }   
+DEST  : { email@theposhwolf.com, FirstName LastName (FirstName LastName) }   
+name.middleName is different: old= "", new= "Anthony"   
+ENT.employeeNumber is different: old= "", new= "empnumber"   
+IAN.physicalDeliveryOfficeName is different: old= "Portland", new= "Eugene"    
+email@theposhwolf.com: report only, no update   
+--------------------------------------------------------------------------------   
+SOURCE: { ADPID04, FirstName LastName, email@theposhwolf.com }   
+DEST  : { email@theposhwolf.com, FirstName LastName (FirstName LastName) }   
+ENT.division is different: old= "", new= "North American Division"   
+ENT.employeeNumber is different: old= "", new= "empnumber"   
+IAN.physicalDeliveryOfficeName is different: old= "Eugene", new= "Seattle"   
+email@theposhwolf.com: report only, no update   
+--------------------------------------------------------------------------------   
+SOURCE: { ADPID05, FirstName LastName, email@theposhwolf.com }   
+DEST  : { email@theposhwolf.com, FirstName LastName (FirstName LastName) }   
+name.middleName is different: old= "", new= "Grace"   
+ENT.employeeNumber is different: old= "", new= "empnumber"   
+email@theposhwolf.com: report only, no update   
+--------------------------------------------------------------------------------   
+SOURCE: { ADPID06, FirstName LastName, email@theposhwolf.com }   
+DEST  : { email@theposhwolf.com, FirstName LastName (FirstName LastName) }   
+ENT.division is different: old= "", new= "North American Division"   
+ENT.employeeNumber is different: old= "", new= "empnumber"   
+ENT.manager is different: old= "email@theposhwolf.com", new= "email@theposhwolf.com"   
+IAN.physicalDeliveryOfficeName is different: old= "Seattle", new= "Eugene"   
+email@theposhwolf.com: report only, no update   
