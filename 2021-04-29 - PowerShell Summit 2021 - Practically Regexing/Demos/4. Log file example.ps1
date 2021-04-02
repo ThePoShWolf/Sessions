@@ -34,10 +34,10 @@ $source = 'SOURCE: { ADPID, FirstName LastName, newemail@theposhwolf.com }   '
 '^SOURCE: \{ \}'
 
 # Splitting by commas
-$source -match '^SOURCE: \{ [^,]+, [^,]+, [^ ]+ \}';$Matches
+$source -match "^SOURCE: \{ \w+, [0-9a-zA-Z\-_' ]+, [^ ]+ \}";$Matches
 
 # Add groups
-$source -match '^SOURCE: \{ (?<id>[^,]+), (?<name>[^,]+), (?<email>[^ ]+) \}';$Matches
+$source -match "^SOURCE: \{ (?<id>\w+), (?<name>[0-9a-zA-Z\-_' ]+), (?<email>[^ ]+) \}";$Matches
 
 #endregion
 
@@ -78,7 +78,7 @@ $prop2 -match '^(?<prop>.+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"
 $logPath = '.\2021-04-29 - PowerShell Summit 2021 - Practically Regexing\Demos\SanitizedLog.txt'
 $content = Get-Content $logPath
 
-$sourceRegex = '^SOURCE: \{ (?<id>[^,]+), (?<name>[^,]+), (?<email>[^ ]+) \}'
+$sourceRegex = "^SOURCE: \{ (?<id>\w+), (?<name>[0-9a-zA-Z\-_' ]+), (?<email>[^ ]+) \}"
 $destRegex = 'DEST  : \{ (?<email>[^,]+), (?<name>[^}]+) \}'
 $propRegex = '(?<prop>.+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"'
 
