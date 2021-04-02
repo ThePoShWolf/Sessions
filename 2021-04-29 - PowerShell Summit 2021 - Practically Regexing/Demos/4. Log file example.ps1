@@ -62,15 +62,15 @@ $prop1 = 'ENT.employeeNumber is different: old= "", new= "empnumber"   '
 $prop2 = 'emails[work].value is different: old= "oldemail@theposhwolf.com", new= "newemail@theposhwolf.com"   '
 
 # Start
-'^.+ is different: old= "[^"]*", new= "[^"]+"'
+'^\S+ is different: old= "[^"]*", new= "[^"]+"'
                              ^             ^
 
-$prop1 -match '^.+ is different: old= "[^"]*", new= "[^"]+"';$Matches
-$prop2 -match '^.+ is different: old= "[^"]*", new= "[^"]+"';$Matches
+$prop1 -match '^\S+ is different: old= "[^"]*", new= "[^"]+"';$Matches
+$prop2 -match '^\S+ is different: old= "[^"]*", new= "[^"]+"';$Matches
 
 # Add groups
-$prop1 -match '^(?<prop>.+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
-$prop2 -match '^(?<prop>.+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
+$prop1 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
+$prop2 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
 
 #endregion
 
@@ -79,8 +79,8 @@ $logPath = '.\2021-04-29 - PowerShell Summit 2021 - Practically Regexing\Demos\S
 $content = Get-Content $logPath
 
 $sourceRegex = "^SOURCE: \{ (?<id>\w+), (?<name>[0-9a-zA-Z\-_' ]+), (?<email>[^ ]+) \}"
-$destRegex = 'DEST  : \{ (?<email>[^,]+), (?<name>[^}]+) \}'
-$propRegex = '(?<prop>.+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"'
+$destRegex = '^DEST  : \{ (?<email>[^,]+), (?<name>[^}]+) \}'
+$propRegex = '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"'
 
 $x = 0
 $out = @{}
