@@ -63,14 +63,14 @@ $prop2 = 'emails[work].value is different: old= "oldemail@theposhwolf.com", new=
 
 # Start
 '^\S+ is different: old= "[^"]*", new= "[^"]+"'
-                             ^             ^
+                              ^             ^
 
 $prop1 -match '^\S+ is different: old= "[^"]*", new= "[^"]+"';$Matches
 $prop2 -match '^\S+ is different: old= "[^"]*", new= "[^"]+"';$Matches
 
 # Add groups
 $prop1 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
-$prop2 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
+$prop2 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matchess
 
 #endregion
 

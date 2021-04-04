@@ -14,7 +14,7 @@ $sampleUserDn = 'CN=ThePoShWolf,OU=Oregon,OU=Users,DC=theposhwolf,DC=com'
 # OR a backslash followed by a character (including a back slash or comma):
 '\\.'
 
-# Combined with an asterisk to capture 1 or more:
+# Combined with an plus sign to capture 1 or more:
 '([^\,]|\\.)+'
 
 # Combined with our start we get:
@@ -38,29 +38,29 @@ $userRegex = '^CN=(?<cn>(?:[^\,]|\\.)+),'
 '(OU|CN)=(?:[^\,]|\\.)+'
 
 # And the user could be in nested OUs or containers, so we'll account for 1 or more:
-'((OU|CN)=(?:[^\,]|\\.)*,)+'
+'((OU|CN)=(?:[^\,]|\\.)+,)+'
 
 # Adding it to the userRegex:
-$sampleUserDn -match "$userRegex((OU|CN)=([^\,]|\\.)+,)*";$Matches
+$sampleUserDn -match "$userRegex((OU|CN)=([^\,]|\\.)+,)+";$Matches
 
 # And then we'll clean up the groupings:
-$sampleUserDn -match "$userRegex(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*)";$Matches
+$sampleUserDn -match "$userRegex(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+)";$Matches
 
 #endregion
 
 #region Domain
-$pathRegex = '(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*)'
+$pathRegex = '(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+)'
 
 # We know the domain section starts with DC:
 'DC='
 
 # And for the domain name, we can use a stricter character set
 # Characters, digits, and hyphens, but it can't start or end with a hyphen
-# This is where a lookahead can come into play:
+# This is where look arounds can come into play:
 '(?!-)[a-zA-Z0-9-]+(?<!-)'
 
 # so for the domain:
-'DC=(?!-)[a-zA-Z0-9-]+(?<!-)'
+'DC=(?!-)[a-zA-Z0-9-]+(?<!-),'
 
 # And since we may be in a subdomain:
 '(DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+'
@@ -78,6 +78,6 @@ $sampleUserDn -match "$userRegex$PathRegex(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!
 
 #region Final Product
 
-$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))';$Matches
+$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))';$Matches
 
 #endregion

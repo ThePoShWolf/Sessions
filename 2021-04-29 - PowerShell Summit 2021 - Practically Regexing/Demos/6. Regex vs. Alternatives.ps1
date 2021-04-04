@@ -1,7 +1,7 @@
 #region AD DN
 
 $sampleUserDn = 'CN=ThePoShWolf,OU=Oregon,OU=Users,DC=theposhwolf,DC=com'
-$regex = '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))'
+$regex = '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))'
 
 $count = 10000
 
@@ -25,7 +25,7 @@ Measure-Command {
 Measure-Command {
     for($x=0; $x -lt $count; $x++) {
         @{
-            cn = $sampleUserDn.Substring($sampleUserDn.IndexOf('=')+1,$sampleUserDn.IndexOf(',')-$sampleUserDn.IndexOf('=')-1) | Out-Null
+            cn = $sampleUserDn.Substring($sampleUserDn.IndexOf('=')+1,$sampleUserDn.IndexOf(',')-$sampleUserDn.IndexOf('=')-1)
             path = $sampleUserDn.Substring($sampleUserDn.IndexOf(',')+1)
             domain = $sampleUserDn.substring($sampleUserDn.IndexOf(',DC')+1)
         }
