@@ -3,6 +3,9 @@
 # regex
 'Org(s)?'
 
+# replaces
+'Server$1'
+
 # matches
 'Org'
 'Orgs'
@@ -14,6 +17,9 @@
 # regex
 '-ZCrm'
 
+# replace
+'-Demo'
+
 # matches
 '-ZCrm'
 
@@ -23,6 +29,9 @@
 
 # regex
 '(?<=\$)(script:)?config'
+
+# replace
+'$1moduleConfig'
 
 # matches (without replacing the $)
 $config
