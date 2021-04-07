@@ -70,7 +70,7 @@ $prop2 -match '^\S+ is different: old= "[^"]*", new= "[^"]+"';$Matches
 
 # Add groups
 $prop1 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
-$prop2 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matchess
+$prop2 -match '^(?<prop>\S+) is different: old= "(?<old>[^"]*)", new= "(?<new>[^"]+)"';$Matches
 
 #endregion
 
@@ -93,11 +93,11 @@ while ($x -le $content.count) {
                 New = $matches.new
             }
         }elseif ($content[$x] -match $sourceRegex) {
-                $user['Source'] = @{
-                    AID = $matches.id
-                    Name = $matches.name
-                    Email = $matches.email
-                }
+            $user['Source'] = @{
+                AID = $matches.id
+                Name = $matches.name
+                Email = $matches.email
+            }
         } elseif ($content[$x] -match $destRegex) {
             $user['Dest'] = @{
                 Name = $matches.name
