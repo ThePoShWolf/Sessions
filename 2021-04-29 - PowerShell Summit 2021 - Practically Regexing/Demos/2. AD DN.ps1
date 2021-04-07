@@ -22,7 +22,7 @@ $sampleUserDn -match '^CN=([^\,]|\\.)+,';$Matches
 
 # We can add a group to capture the cn of the user
 # And uncapture the last group:
-$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),';$Matches
+$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),';7$Matches
 $Matches.cn
 
 #endregion
@@ -38,18 +38,18 @@ $userRegex = '^CN=(?<cn>(?:[^\,]|\\.)+),'
 '(OU|CN)=(?:[^\,]|\\.)+'
 
 # And the user could be in nested OUs or containers, so we'll account for 1 or more:
-'((OU|CN)=(?:[^\,]|\\.)+,)+'
+'((OU|CN)=(?:[^\,]|\\.)+,)*'
 
 # Adding it to the userRegex:
-$sampleUserDn -match "$userRegex((OU|CN)=([^\,]|\\.)+,)+";$Matches
+$sampleUserDn -match "$userRegex((OU|CN)=([^\,]|\\.)+,)*";$Matches
 
 # And then we'll clean up the groupings:
-$sampleUserDn -match "$userRegex(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+)";$Matches
+$sampleUserDn -match "$userRegex(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*)";$Matches
 
 #endregion
 
 #region Domain
-$pathRegex = '(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+)'
+$pathRegex = '(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*)'
 
 # We know the domain section starts with DC:
 'DC='
@@ -78,6 +78,6 @@ $sampleUserDn -match "$userRegex$PathRegex(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!
 
 #region Final Product
 
-$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)+(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))';$Matches
+$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),(?<path>(?:(?:OU|CN)=(?:[^\,]|\\.)+,)*(?<domain>(?:DC=(?!-)[a-zA-Z0-9-]+(?<!-),)+(?:DC=(?!-)[a-zA-Z0-9-]{2,6}(?<!-))))';$Matches
 
 #endregion
