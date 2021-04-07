@@ -67,6 +67,18 @@ $xml.note
 
 #endregion
 
+#region URL
+
+# Why?
+'Parser'
+
+# Example
+$uri = 'https://www.bing.com/search?q=powershell'
+
+[System.Uri]::new($uri)
+
+#endregion
+
 #region Summary
 
 # Spend your time writing code that does the things that make you productive.
