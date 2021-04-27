@@ -22,7 +22,7 @@ $sampleUserDn -match '^CN=([^\,]|\\.)+,';$Matches
 
 # We can add a group to capture the cn of the user
 # And uncapture the last group:
-$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),';7$Matches
+$sampleUserDn -match '^CN=(?<cn>(?:[^\,]|\\.)+),';$Matches
 $Matches.cn
 
 #endregion
