@@ -50,3 +50,43 @@ $token = New-RwEnrollmentSession @tokenSplat
 # Use the utility to install the Runner:
 .\runway install -t $token.Token
 ```
+
+## Running a job
+
+*Create a Job in the Portal.*
+
+*Note difference between a 'Job' and an 'Action'.*
+
+*Run the Job.*
+
+![Single Action Job Flow](assets/define-job.png)
+
+## Manually Retrieving results
+
+*Manually download results.*
+
+![Manual job results download](assets/dl-job-results.png)
+
+## How Runway handles results
+
+Results are any files that are created by the Action and dropped in .\results.
+
+The Runner zips up the .\results file and caches it for the life of the job.
+
+## Connectors
+
+Connectors are Actions that run on a dedicated Runner and run once for each Runner assigned the job.
+
+They are designed to do something with the Job's results.
+
+*Create Job with download:file connector*
+
+*Show the downloaded results*
+
+![Job with Connector](assets/job-w-connector.png)
+
+## Custom Actions
+
+## Custom Connectors
+
+## SDK
