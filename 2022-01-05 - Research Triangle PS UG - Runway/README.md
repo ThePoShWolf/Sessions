@@ -1,5 +1,13 @@
 # Research Triangle PowerShell User Group 2022-01-05
 
+## Disclaimer
+
+I work for Runway.
+
+I am not a salesperson.
+
+I think Runway is cool.
+
 ## Presentation
 
 Relevant links:
@@ -34,11 +42,17 @@ Runway can:
 
 ## Enrolling a runner
 
-You can get a token from the Portal.
+*Get a token from the Portal.*
+
+*Show Groups.*
 
 Or use the SDK:
 
 ```powershell
+# If you haven't already authenticated
+$s = Invoke-RwLoginAuthentication -Email <email> -Password <password> -Remember
+$env:RunwaySessionToken = $s.Session
+
 # If you don't already have the utility:
 $dls = Get-RwContentPublicDownload
 $w64 = $dls | ?{$_.Platform -eq 'Windows64'}
@@ -67,19 +81,23 @@ $token = New-RwEnrollmentSession @tokenSplat
 
 *Run the Job.*
 
+Here's the process that happens with a single Action job:
+
 ![Single Action Job Flow](assets/define-job.png)
+
+## A note about results
+
+Results are whatever the Action wants them to be. Technically they are any files that are placed in .\results when the Action executes.
+
+Runway does not store Action results, they are zipped and cached on the Runner.
+
+Results can be routed with a Connector.
 
 ## Manually Retrieving results
 
 *Manually download results.*
 
 ![Manual job results download](assets/dl-job-results.png)
-
-## How Runway handles results
-
-Results are any files that are created by the Action and dropped in .\results.
-
-The Runner zips up the .\results file and caches it for the life of the job.
 
 ## Connectors
 
@@ -89,9 +107,19 @@ They are designed to do something with the Job's results.
 
 *Create Job with download:file connector*
 
-*Show the downloaded results*
+Here is what happens:
 
 ![Job with Connector](assets/job-w-connector.png)
+
+More details about how results are handled in Runway:
+
+![Results chain](assets/results-chain.png)
+
+When a Job is assigned to multiple Runners, they each execute independently:
+
+![Multiple Runner job](assets/action-chain.png)
+
+*Show the downloaded results*
 
 ## Custom Actions
 
@@ -102,6 +130,13 @@ They are designed to do something with the Job's results.
 *Show the code for download:file*
 
 ## SDK
+
+To demonstrate the SDK, I'll use my [Sample Scheduled Tasks repository](https://github.com/Runway-Software/sample-scheduled-tasks).
+
+The idea with this repository is twofold:
+
+1. Demonstrate how Runway can be used to replace the Task Scheduler in Windows.
+2. Demonstrate how Jobs and Actions can be stored in Git and synced to Runway using the PowerShell SDK.
 
 ## Upcoming features
 
