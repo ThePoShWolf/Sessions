@@ -103,3 +103,7 @@ They are designed to do something with the Job's results.
 
 ## SDK
 
+## Upcoming features
+
+- MacOS support
+- Remote console
