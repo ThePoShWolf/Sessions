@@ -12,7 +12,7 @@ Runway is a new startup. The platform has been developed over the past 2 years l
 
 We are new to dealing with users of our platform, so we would love to hear any and all feedback from PowerShell folks so that we can make Runway an effective tool for your toolbox.
 
-Runway has and will always have a free community version that is limited by endpoint count. Currently the limit is 1000.
+Runway has and will always have a free community version that only is limited by endpoint count (no feature limits). Currently the limit is 1000.
 
 ## Presentation
 
