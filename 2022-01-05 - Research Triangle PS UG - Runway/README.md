@@ -2,11 +2,17 @@
 
 ## Disclaimer
 
-I work for Runway.
+I work for Runway and I am not a salesperson.
 
-I am not a salesperson.
+After getting a couple of demos of Runway, I asked if they were hiring because I thought it was so cool. So I ended up joining as a System Engineer, which means that I build actions, make recommendations to the dev team about features, I work with users to make them successful, and I do demos for folks that I think would like Runway. So here I am.
 
-I think Runway is cool.
+## Marketing Spiel
+
+Runway is a new startup. The platform has been developed over the past 2 years led by a developer that has built other platforms from scratch. We haven't officially launched yet as we are still in stealth mode, but that just means that we aren't doing any big time marketing. There are no restrictions around discussing and sharing about Runway.
+
+We are new to dealing with users of our platform, so we would love to hear any and all feedback from PowerShell folks so that we can make Runway an effective tool for your toolbox.
+
+Runway has and will always have a free community version that is limited by endpoint count. Currently the limit is 1000.
 
 ## Presentation
 
