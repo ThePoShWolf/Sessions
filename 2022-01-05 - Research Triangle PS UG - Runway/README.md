@@ -15,6 +15,8 @@ Relevant links:
 
 Runway is a service orchestration and automation platform. At its core, it runs arbitrary code (scripts, executables, etc) on endpoints.
 
+Marketing description: Low-Code Automation and Connectivity for Hybrid Cloud Networks.
+
 Runway is:
 - An automation platform
 - REST API Driven
@@ -23,7 +25,8 @@ Runway is:
 Runway can:
 - Run arbitrary code on endpoints via installed agents (Runners)
   - Including PowerShell! Both Windows PowerShell and PowerShell, even if PowerShell isn't installed
-- Schedule jobs
+- Orchestrate Jobs
+- Securely move data between endpoints, no VPN required
 - Run asset discovery on networks
 - Self deploy in AD environments
 
@@ -36,6 +39,11 @@ You can get a token from the Portal.
 Or use the SDK:
 
 ```powershell
+# If you don't already have the utility:
+$dls = Get-RwContentPublicDownload
+$w64 = $dls | ?{$_.Platform -eq 'Windows64'}
+Invoke-RwContentDownloadPublicFile -Id $w64.Id -OutFile .\runway.exe
+
 # Get a token, associate it to a specific group
 # Runway will default to your root group
 $group = (Get-RwGroup).Items | ?{$_.Name -eq 'Home'}
@@ -87,6 +95,11 @@ They are designed to do something with the Job's results.
 
 ## Custom Actions
 
+*Show the code for inventory:software*
+
 ## Custom Connectors
 
+*Show the code for download:file*
+
 ## SDK
+
