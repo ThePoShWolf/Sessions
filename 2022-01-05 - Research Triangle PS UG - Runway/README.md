@@ -6,7 +6,7 @@
 
 I work for Runway and I am not a salesperson.
 
-After getting a couple of demos of Runway, I asked if they were hiring because I thought it was so cool. So I ended up joining as a System Engineer, which means that I build actions, make recommendations to the dev team about features, I work with users to make them successful, and I do demos for folks that I think would like Runway. So here I am.
+After getting a couple of demos of Runway, I asked if they were hiring because I thought it was so cool. So I ended up joining as a System Engineer, which means that I build actions, make recommendations to the dev team about features, I work with users to make them successful, I write all of the technical documentation, I support the PowerShell SDK, and I do demos for folks that I think would like Runway. So here I am.
 
 ## Marketing Spiel
 
@@ -119,13 +119,13 @@ Here is what happens:
 
 ![Job with Connector](assets/job-w-connector.png)
 
-More details about how results are handled in Runway:
-
-![Results chain](assets/results-chain.png)
-
 When a Job is assigned to multiple Runners, they each execute independently:
 
 ![Multiple Runner job](assets/action-chain.png)
+
+More details about how results are handled in Runway:
+
+![Results chain](assets/results-chain.png)
 
 *Show the downloaded results*
 
