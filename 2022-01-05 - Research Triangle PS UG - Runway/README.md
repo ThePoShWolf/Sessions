@@ -125,6 +125,8 @@ When a Job is assigned to multiple Runners, they each execute independently:
 
 *Show the code for inventory:software*
 
+*Demonstrate the deployment process in the [Actions repository](https://github.com/Runway-Software/actions)*
+
 ## Custom Connectors
 
 *Show the code for download:file*
