@@ -9,3 +9,7 @@ You are welcome to use anything you find in this repository! Just be sure to fam
 ## Dates
 
 All dates are listed in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format. So 2020-01-03 is January 3, 2020.
+
+## Feedback
+
+If you saw one of my sessions, I would very much appreciate your feedback: https://www.surveymonkey.com/r/8YYX9K6
