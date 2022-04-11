@@ -1,4 +1,4 @@
-# Research Triangle PowerShell User Group 2022-01-05
+# Chicago PowerShell User Group 2022-04-12
 
 **Thank you for this opportunity to present Runway!**
 
@@ -114,19 +114,25 @@ Connectors are Actions that run on a Runner specified when the Job is created.
 
 They are designed to allow moving of data using Runway.
 
-*Create Job with download:file connector*
+*Show the three general use cases*
 
-Here is what happens:
+Here's the high-level diagram:
 
-![Job with Connector](assets/job-w-connector.png)
+![Connector examples](assets/connector-examples.png)
 
-When a Job is assigned to multiple Runners, they each execute independently.
-
-*Show the downloaded results*
+Actions run on all assigned Runners and Connectors run only on the selected Connector.
 
 ## Custom Actions
 
-*Show the code for inventory:software*
+Simple Action:
+
+- Action Name
+  - `manifest.txt`
+  - `repository.json`
+  - windows
+    - `script.ps1`
+
+*Show the code for collect:file and deploy:file*
 
 *Demonstrate the deployment process in the [Actions repository](https://github.com/Runway-Software/actions)*
 
