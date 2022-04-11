@@ -12,7 +12,7 @@ After getting a couple of demos of Runway, I asked if they were hiring because I
 
 Runway is a new startup. The platform has been developed over the past 2 years led by a developer that has built other platforms from scratch. We haven't officially launched yet as we are still in stealth mode, but that just means that we aren't doing any big time marketing. There are no restrictions around discussing and sharing about Runway.
 
-We are new to dealing with users of our platform, so we would love to hear any and all feedback from PowerShell folks so that we can make Runway an effective tool for your toolbox.
+We still don't have a lot of users, so we would love to hear any and all feedback from PowerShell folks so that we can make Runway an effective tool for your toolbox.
 
 Runway has and will always have a free community version that only is limited by endpoint count (no feature limits). Currently the limit is 100.
 
@@ -29,7 +29,7 @@ Relevant links:
 
 ### What is Runway?
 
-Runway is a service orchestration and automation platform. At its core, it runs arbitrary code (scripts, executables, etc) on endpoints.
+Runway is an automation platform. At its core, it orchestrates arbitrary code (scripts, executables, etc) on endpoints providing a workflow engine, connectivity, and management.
 
 Marketing description: Automation Fabric for Hybrid Cloud Networks.
 
@@ -142,12 +142,18 @@ Simple Action:
 
 ## SDK
 
+### Job Repo
+
 To demonstrate the SDK, I'll use my [Sample Scheduled Tasks repository](https://github.com/Runway-Software/sample-scheduled-tasks).
 
 The idea with this repository is twofold:
 
 1. Demonstrate how Runway can be used to replace the Task Scheduler in Windows.
 2. Demonstrate how Jobs and Actions can be stored in Git and synced to Runway using the PowerShell SDK.
+
+### Invoke-RwPowerShellCommand
+
+*Demonstrate Invoke-RwPowerShellCommand*
 
 ## Upcoming features
 
