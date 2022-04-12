@@ -1,0 +1,583 @@
+{
+    "x-generator": "NSwag v13.14.8.0 (NJsonSchema v10.5.2.0 (Newtonsoft.Json v12.0.0.0))",
+    "swagger": "2.0",
+    "info": {
+        "title": "Runway API",
+        "version": "2.0"
+    },
+    "host": "portal.runway.host",
+    "schemes": [
+        "https"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/v2/accounts": {
+            "delete": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_DeleteBySet",
+                "consumes": [
+                    "application/json",
+                    "application/*+json"
+                ],
+                "parameters": [
+                    {
+                        "name": "setRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/IdRequest"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_All",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/QueryResponseOfIAccountAssetQueryView"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/{id}": {
+            "delete": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_DeleteById",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "x-nullable": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_Load",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "x-nullable": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/RunwayAccountAsset"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/tags": {
+            "get": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_GetTags",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/TagView"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/query": {
+            "post": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_Query",
+                "consumes": [
+                    "application/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Query"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/QueryResponseOfIAccountAssetQueryView"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/count": {
+            "get": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_Count",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/count/query": {
+            "post": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_CountQuery",
+                "consumes": [
+                    "application/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Query"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/query/schema": {
+            "get": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_GetQuerySchema",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/IFilterProperty"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/accounts/query/set/{id}": {
+            "post": {
+                "tags": [
+                    "AccountAsset"
+                ],
+                "operationId": "AccountAsset_SaveQueryToSet",
+                "consumes": [
+                    "application/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "x-nullable": true
+                    },
+                    {
+                        "name": "query",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Query"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/auth/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "operationId": "Authentication_Login",
+                "consumes": [
+                    "application/json",
+                    "application/*+json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginRequest"
+                        },
+                        "x-nullable": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/LoginResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v2/auth/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Authentication_Logout",
+                "description": "Terminate the current user session.",
+                "operationId": "Authentication_Logout",
+                "responses": {
+                    "200": {
+                        "x-nullable": true,
+                        "description": "",
+                        "schema": {
+                            "type": "file"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TagView": {
+            "type": "object",
+            "required": [
+                "count"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "count": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "RunwayAccountAsset": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RunwayAsset"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "instanceTimestamp"
+                    ],
+                    "properties": {
+                        "endpointId": {
+                            "type": "string"
+                        },
+                        "endpointHostname": {
+                            "type": "string"
+                        },
+                        "instanceTimestamp": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "username": {
+                            "type": "string"
+                        },
+                        "domain": {
+                            "type": "string"
+                        },
+                        "sid": {
+                            "type": "string"
+                        },
+                        "instanceType": {
+                            "type": "string"
+                        },
+                        "securityGroups": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "QueryResponseOfIAccountAssetQueryView": {
+            "type": "object",
+            "required": [
+                "filteredCount",
+                "totalCount",
+                "selectedCount"
+            ],
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/IAccountAssetQueryView"
+                    }
+                },
+                "filteredCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "totalCount": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "selectedCount": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "Query": {
+            "type": "object",
+            "required": [
+                "skip",
+                "take",
+                "includeSubgroups",
+                "sortDirection"
+            ],
+            "properties": {
+                "skip": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "take": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "rootContainerId": {
+                    "type": "string"
+                },
+                "includeSubgroups": {
+                    "type": "boolean"
+                },
+                "membershipCheckId": {
+                    "type": "string"
+                },
+                "selectionCheckId": {
+                    "type": "string"
+                },
+                "filter": {
+                    "$ref": "#/definitions/FilterComparison"
+                },
+                "sortField": {
+                    "type": "string"
+                },
+                "sortDirection": {
+                    "$ref": "#/definitions/SortDirection"
+                }
+            }
+        },
+        "FilterComparison": {
+            "type": "object",
+            "required": [
+                "caseSensitive"
+            ],
+            "properties": {
+                "operator": {
+                    "type": "string"
+                },
+                "caseSensitive": {
+                    "type": "boolean"
+                },
+                "left": {
+                    "type": "string"
+                },
+                "right": {
+                    "type": "string"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FilterComparison"
+                    }
+                }
+            }
+        },
+        "SortDirection": {
+            "type": "string",
+            "description": "",
+            "x-enumNames": [
+                "Ascending",
+                "Descending"
+            ],
+            "enum": [
+                "Ascending",
+                "Descending"
+            ]
+        },
+        "IFilterProperty": {
+            "type": "object",
+            "x-abstract": true,
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/FilterDataType"
+                }
+            }
+        },
+        "FilterDataType": {
+            "type": "string",
+            "description": "",
+            "x-enumNames": [
+                "String",
+                "Integer",
+                "Boolean",
+                "Timestamp"
+            ],
+            "enum": [
+                "String",
+                "Integer",
+                "Boolean",
+                "Timestamp"
+            ]
+        },
+        "LoginResponse": {
+            "type": "object",
+            "properties": {
+                "ttl": {
+                    "type": "string"
+                },
+                "session": {
+                    "type": "string"
+                }
+            }
+        },
+        "LoginRequest": {
+            "type": "object",
+            "required": [
+                "remember"
+            ],
+            "properties": {
+                "ttl": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "remember": {
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}
