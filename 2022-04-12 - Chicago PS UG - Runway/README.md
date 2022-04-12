@@ -58,16 +58,16 @@ Or use the SDK:
 
 ```powershell
 # If you haven't already authenticated
-Connect-Runway -Email <email> -Password <password> -Remember
+Connect-Runway -Email <email> -Password <password>
 
 # If you don't already have the utility:
 $dls = Get-RwContentPublicDownload
 $w64 = $dls | ?{$_.Platform -eq 'Windows64'}
-Invoke-RwContentDownloadPublicFile -Id $w64.Id -OutFile .\runway.exe
+Invoke-RwDownloadContentPublicFile -Id $w64.Id -OutFile .\runway.exe
 
 # Get a token, associate it to a specific group
 # Runway will default to your root group
-$group = (Get-RwGroup).Items | ?{$_.Name -eq 'Home'}
+$group = (Get-RwGroup).Items | ?{$_.Name -eq 'Customer 1'}
 $tokenSplat = @{
     Expiration = (Get-Date).AddHours(1)
     IsOneTime = $true
@@ -90,12 +90,12 @@ $token = New-RwEnrollmentSession @tokenSplat
 
 ## A note about results
 
-[Results](https://docs.runway.host/runway-documentation/action-developer-guides/components/results) are whatever the Action wants them to be. Technically they are any files that are placed in .\results when the Action executes.
+[Results](https://docs.runway.host/runway-documentation/action-developer-guides/components/results) are whatever the Action wants them to be. Technically they are any files that are placed in `.\results` when the Action executes.
 
 For example, getting a report of all of the local users:
 
 ```powershell
-Get-LocalUser | Export-Csv .\result\$($env:COMPUTERNAME)-users.csv -NoTypeInformation
+Get-LocalUser | Export-Csv .\results\$($env:COMPUTERNAME)-users.csv -NoTypeInformation
 ```
 
 Runway does not store Action results, they are zipped and cached on the Runner.
