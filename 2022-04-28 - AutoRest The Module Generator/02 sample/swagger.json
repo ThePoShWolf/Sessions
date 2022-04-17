@@ -177,6 +177,62 @@
                 "operationId": "Connection_DeleteById"
             }
         },
+        "/api/v2/connections/count": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Connection"
+                ],
+                "operationId": "Connection_Count"
+            }
+        },
+        "/api/v2/connections/query": {
+            "post": {
+                "consumes": [
+                    "application/json",
+                    "application/*+json"
+                ],
+                "tags": [
+                    "Connection"
+                ],
+                "operationId": "Connection_Query",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "x-nullable": false,
+                        "schema": {
+                            "$ref": "#/definitions/QueryResponseOfIConnectionQueryView"
+                        },
+                        "description": ""
+                    }
+                },
+                "parameters": [
+                    {
+                        "x-nullable": false,
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Query"
+                        },
+                        "name": "query",
+                        "in": "body"
+                    }
+                ]
+            }
+        },
         "/api/v2/auth/login": {
             "post": {
                 "tags": [
@@ -311,6 +367,32 @@
             },
             "type": "object"
         },
+        "FilterComparison": {
+            "required": [
+                "caseSensitive"
+            ],
+            "properties": {
+                "operator": {
+                    "type": "string"
+                },
+                "caseSensitive": {
+                    "type": "boolean"
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/FilterComparison"
+                    }
+                },
+                "left": {
+                    "type": "string"
+                },
+                "right": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
         "IConnectionQueryView": {
             "x-abstract": true,
             "required": [
@@ -417,6 +499,46 @@
                     "type": "boolean"
                 }
             }
+        },
+        "Query": {
+            "required": [
+                "skip",
+                "take",
+                "includeSubgroups",
+                "sortDirection"
+            ],
+            "properties": {
+                "selectionCheckId": {
+                    "type": "string"
+                },
+                "take": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "filter": {
+                    "$ref": "#/definitions/FilterComparison"
+                },
+                "membershipCheckId": {
+                    "type": "string"
+                },
+                "sortField": {
+                    "type": "string"
+                },
+                "rootContainerId": {
+                    "type": "string"
+                },
+                "includeSubgroups": {
+                    "type": "boolean"
+                },
+                "sortDirection": {
+                    "$ref": "#/definitions/SortDirection"
+                },
+                "skip": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "type": "object"
         },
         "QueryResponseOfIConnectionQueryView": {
             "required": [
@@ -572,6 +694,18 @@
                     "type": "object"
                 }
             ]
+        },
+        "SortDirection": {
+            "enum": [
+                "Ascending",
+                "Descending"
+            ],
+            "x-enumNames": [
+                "Ascending",
+                "Descending"
+            ],
+            "type": "string",
+            "description": ""
         },
         "UpdateConnectionRequest": {
             "allOf": [
