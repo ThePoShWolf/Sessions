@@ -411,6 +411,54 @@
                 }
             ]
         },
+        "RunwayAsset": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RunwayObject"
+                },
+                {
+                    "type": "object"
+                }
+            ]
+        },
+        "RunwayObject": {
+            "x-abstract": true,
+            "required": [
+                "revision",
+                "isSelected"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "name": {
+                    "type": "string"
+                },
+                "isSelected": {
+                    "type": "boolean"
+                },
+                "groups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "revision": {
+                    "type": "integer",
+                    "format": "int32"
+                }
+            },
+            "type": "object"
+        },
         "QueryResponseOfIAccountAssetQueryView": {
             "type": "object",
             "required": [
@@ -516,6 +564,59 @@
                 "Ascending",
                 "Descending"
             ]
+        },
+        "IAccountAssetQueryView": {
+            "x-abstract": true,
+            "required": [
+                "isSelected"
+            ],
+            "properties": {
+                "endpointHostname": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "instanceType": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "domain": {
+                    "type": "string"
+                },
+                "securityGroups": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "sid": {
+                    "type": "string"
+                },
+                "endpointId": {
+                    "type": "string"
+                },
+                "isSelected": {
+                    "type": "boolean"
+                },
+                "username": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "IdRequest": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                }
+            }
         },
         "IFilterProperty": {
             "type": "object",
