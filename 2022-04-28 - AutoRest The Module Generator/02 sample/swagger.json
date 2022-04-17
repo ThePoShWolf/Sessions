@@ -233,6 +233,49 @@
         }
     },
     "definitions": {
+        "ActionSetting": {
+            "required": [
+                "type",
+                "isOptional"
+            ],
+            "properties": {
+                "value": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/ActionSettingType"
+                },
+                "isOptional": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "defaultValue": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "ActionSettingType": {
+            "enum": [
+                "String",
+                "Number",
+                "Boolean",
+                "Password"
+            ],
+            "x-enumNames": [
+                "String",
+                "Number",
+                "Boolean",
+                "Password"
+            ],
+            "type": "string",
+            "description": ""
+        },
         "CreateConnectionRequest": {
             "required": [
                 "isHidden"
@@ -268,6 +311,64 @@
             },
             "type": "object"
         },
+        "IConnectionQueryView": {
+            "x-abstract": true,
+            "required": [
+                "isSelected",
+                "isHidden"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "actionId": {
+                    "type": "string"
+                },
+                "actionName": {
+                    "type": "string"
+                },
+                "isHidden": {
+                    "type": "boolean"
+                },
+                "settings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ActionSetting"
+                    }
+                },
+                "isSelected": {
+                    "type": "boolean"
+                },
+                "assignedEndpointId": {
+                    "type": "string"
+                },
+                "connectionMetrics": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/RunwayConnectionStatistic"
+                    }
+                },
+                "runnerId": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "assignedEndpointName": {
+                    "type": "string"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "type": "object"
+        },
         "IdRequest": {
             "type": "object",
             "properties": {
@@ -285,6 +386,37 @@
                     "type": "object"
                 }
             ]
+        },
+        "LoginResponse": {
+            "type": "object",
+            "properties": {
+                "ttl": {
+                    "type": "string"
+                },
+                "session": {
+                    "type": "string"
+                }
+            }
+        },
+        "LoginRequest": {
+            "type": "object",
+            "required": [
+                "remember"
+            ],
+            "properties": {
+                "ttl": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "remember": {
+                    "type": "boolean"
+                }
+            }
         },
         "QueryResponseOfIConnectionQueryView": {
             "required": [
@@ -359,18 +491,22 @@
                 }
             ]
         },
-        "UpdateConnectionRequest": {
+        "RunwayConnectionStatistic": {
             "allOf": [
                 {
-                    "$ref": "#/definitions/CreateConnectionRequest"
+                    "$ref": "#/definitions/RunwayStatistic"
                 },
                 {
-                    "type": "object",
+                    "required": [
+                        "transferredBytes"
+                    ],
                     "properties": {
-                        "id": {
-                            "type": "string"
+                        "transferredBytes": {
+                            "type": "integer",
+                            "format": "int64"
                         }
-                    }
+                    },
+                    "type": "object"
                 }
             ]
         },
@@ -412,36 +548,45 @@
             },
             "type": "object"
         },
-        "LoginResponse": {
-            "type": "object",
-            "properties": {
-                "ttl": {
-                    "type": "string"
+        "RunwayStatistic": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/RunwayObject"
                 },
-                "session": {
-                    "type": "string"
+                {
+                    "required": [
+                        "timestamp"
+                    ],
+                    "properties": {
+                        "referenceObjectId": {
+                            "type": "string"
+                        },
+                        "timestamp": {
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "statString": {
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
                 }
-            }
+            ]
         },
-        "LoginRequest": {
-            "type": "object",
-            "required": [
-                "remember"
-            ],
-            "properties": {
-                "ttl": {
-                    "type": "string"
+        "UpdateConnectionRequest": {
+            "allOf": [
+                {
+                    "$ref": "#/definitions/CreateConnectionRequest"
                 },
-                "email": {
-                    "type": "string"
-                },
-                "password": {
-                    "type": "string"
-                },
-                "remember": {
-                    "type": "boolean"
+                {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        }
+                    }
                 }
-            }
+            ]
         }
     }
 }
