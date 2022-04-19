@@ -5,19 +5,21 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+
   workflow_dispatch:
 
 jobs:
-  Run:
+  Test:
+    if: ${{ github.event_name == 'pull_request' }}
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Create variables for module cacher
         id: psmodulecache
         uses: potatoqualitee/psmodulecache@v3.5
         with:
-          modules-to-cache: Microsoft.Graph.Identity.DirectoryManagement,Microsoft.Graph.Users.Actions,Microsoft.Graph.Groups,Microsoft.Graph.Users
+          modules-to-cache: ExchangeOnlineManagement
 
       - name: Run module cacher action
         id: cacher
@@ -34,12 +36,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Run script on PR
+      - name: Run script
         if: ${{ github.event_name == 'pull_request' }}
         shell: pwsh
-        run: run: .\script.ps1 -JSON_CERT '${{ secrets.JSON_CERT }}' -CERT_SECRET '${{ secrets.CERT_SECRET }}' -AAD_APP_ID '${{ secrets.AAD_APP_ID }}' -AAD_TENANT_ID '${{ secrets.AAD_TENANT_ID }}' -Test
+        run: .\script.ps1 -JSON_CERT '${{ secrets.JSON_CERT }}' -CERT_SECRET '${{ secrets.CERT_SECRET }}' -AAD_APP_ID '${{ secrets.AAD_APP_ID }}' -Test
 
-      - name: Run script on push
+      - name: Run script
         if: ${{ github.event_name == 'push' }}
         shell: pwsh
-        run: .\script.ps1 -JSON_CERT '${{ secrets.JSON_CERT }}' -CERT_SECRET '${{ secrets.CERT_SECRET }}' -AAD_APP_ID '${{ secrets.AAD_APP_ID }}' -AAD_TENANT_ID '${{ secrets.AAD_TENANT_ID }}'
+        run: .\script.ps1 -JSON_CERT '${{ secrets.JSON_CERT }}' -CERT_SECRET '${{ secrets.CERT_SECRET }}' -AAD_APP_ID '${{ secrets.AAD_APP_ID }}'
