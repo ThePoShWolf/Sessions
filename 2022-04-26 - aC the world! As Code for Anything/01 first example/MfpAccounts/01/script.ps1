@@ -45,7 +45,7 @@ $subSku = Get-MgSubscribedSku | Where-Object {$_.SkuPartNumber -eq $skuPartNum}
 $mfaGroup = Get-MgGroup -Filter "DisplayName eq '$mfaGroupName'"
 $mfaGroupMembers = Get-MgGroupMember -GroupId $mfaGroup.Id -All
 
-"Retrieving scan service account distro group members..."
+"Retrieving service account group members..."
 # Load distro group members
 $saGroup = Get-MgGroup -Filter "DisplayName eq '$saGroupName'"
 $saGroupMembers = Get-MgGroupMember -GroupId $saGroup.Id -All
@@ -99,7 +99,7 @@ foreach ($site in $sites) {
     if ($saGroupMembers.Id -notcontains $mgUser.Id) {
         "- User not a member of Service Account Group"
         if (-not $Test.IsPresent) {
-            New-MgGroupMember -GroupId $mgGroup.Id -DirectoryObjectId $mgUser.Id
+            New-MgGroupMember -GroupId $saGroup.Id -DirectoryObjectId $mgUser.Id
         }
     }
 }
