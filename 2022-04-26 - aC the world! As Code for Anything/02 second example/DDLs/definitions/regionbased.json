@@ -15,7 +15,7 @@
         "Filter": "((CustomAttribute1 -eq '$Region') -and (CustomAttribute2 -eq 'Staff'))"
     },
     "MAs": {
-        "Markets": "all",
+        "Markets": [ "Seattle" ],
         "Name": "$Region-MA",
         "Filter": "((CustomAttribute1 -eq '$Region') -and (CustomAttribute2 -eq 'Staff')) -and ((Title -eq 'Clinical Support - MA') -or (Title -eq 'Practice Manager') -or (Title -eq 'Clinical Lead - MA'))"
     }

@@ -9,8 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Test:
-    if: ${{ github.event_name == 'pull_request' }}
+  Sync:
 
     runs-on: windows-latest
 
