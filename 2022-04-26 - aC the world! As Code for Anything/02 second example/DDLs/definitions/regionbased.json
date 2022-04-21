@@ -5,17 +5,17 @@
         "Filter": "(CustomAttribute1 -eq '$Region')"
     },
     "Provider": {
-        "Markets": "all",
+        "Region": "all",
         "Name":"$Region-Provider",
         "Filter": "((CustomAttribute1 -eq '$Region') -and (CustomAttribute2 -eq 'Provider'))"
     },
     "Staff": {
-        "Markets": "all",
+        "Region": "all",
         "Name": "$Region-Staff",
         "Filter": "((CustomAttribute1 -eq '$Region') -and (CustomAttribute2 -eq 'Staff'))"
     },
     "MAs": {
-        "Markets": [ "Seattle" ],
+        "Region": [ "Seattle" ],
         "Name": "$Region-MA",
         "Filter": "((CustomAttribute1 -eq '$Region') -and (CustomAttribute2 -eq 'Staff')) -and ((Title -eq 'Clinical Support - MA') -or (Title -eq 'Practice Manager') -or (Title -eq 'Clinical Lead - MA'))"
     }

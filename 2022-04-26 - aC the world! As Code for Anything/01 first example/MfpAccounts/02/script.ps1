@@ -59,7 +59,7 @@ foreach ($su in $existingSiteUsers) {
 foreach ($site in $sites) {
     $site
     $accountName = "$($config['prefix']).$($user.site)"
-    $upn = "$accountName@$accountDomain"
+    $upn = "$accountName@$($config['accountDomain'])"
     $mguserSplat = @{
         AssignedLicenses = @(@{SkuId = $subSku.SkuId})
         MailNickname = $accountName

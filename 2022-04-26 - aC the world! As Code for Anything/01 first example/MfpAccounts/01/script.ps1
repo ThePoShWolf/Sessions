@@ -41,12 +41,12 @@ Import-Module Microsoft.Graph.Users
 $subSku = Get-MgSubscribedSku | Where-Object {$_.SkuPartNumber -eq $skuPartNum}
 
 "Retrieving MFA group members..."
-# Load scan group members
+# Load mfa group members
 $mfaGroup = Get-MgGroup -Filter "DisplayName eq '$mfaGroupName'"
 $mfaGroupMembers = Get-MgGroupMember -GroupId $mfaGroup.Id -All
 
 "Retrieving service account group members..."
-# Load distro group members
+# Load service account group members
 $saGroup = Get-MgGroup -Filter "DisplayName eq '$saGroupName'"
 $saGroupMembers = Get-MgGroupMember -GroupId $saGroup.Id -All
 
