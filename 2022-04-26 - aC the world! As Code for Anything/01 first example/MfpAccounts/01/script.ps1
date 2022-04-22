@@ -79,7 +79,7 @@ foreach ($site in $sites) {
     if ($existingSiteUsersHt.Keys -contains $upn) {
         "- Site MFP account already exists, updating"
         if (-not $Test.IsPresent) {
-            Set-MgUser @mguserSplat
+            Set-MgUser @mguserSplat -UserId $existingSiteUsersHt[$upn].Id
         }
     } else {
         "- Creating site account"
