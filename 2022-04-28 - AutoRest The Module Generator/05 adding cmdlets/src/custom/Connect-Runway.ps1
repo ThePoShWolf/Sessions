@@ -8,8 +8,7 @@ Function Connect-Runway {
         )]
         [string]$Email,
         [Parameter(Mandatory)]
-        [SecureString]$Password,
-        [string]$RunwayDomain = 'portal.runway.host'
+        [SecureString]$Password
     )
     $s = Invoke-RwLoginAuthentication -Email $Email -Password ([pscredential]::new('blah',$Password).GetNetworkCredential().Password) -Remember
     $env:RunwaySessionToken = $s.Session
