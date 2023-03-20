@@ -1,4 +1,4 @@
-# ThePoShWolf Sessions
+# The PoShWolf Sessions
 
 Hello! This is the collection of presentations that I've either given or am working on. If you found this repository it is likely because you followed a link you caught on a slide of mine. Welcome!
 
