@@ -21,6 +21,7 @@ switch ($Body.data.name) {
         if ($Body.data.keys -contains 'options') {
             $server = $Body.data['options'][0].value
             # code to start server...
+            $content = "Started server '$server'"
         } else {
             $content = "Please specify a server with the server parameter."
         }
