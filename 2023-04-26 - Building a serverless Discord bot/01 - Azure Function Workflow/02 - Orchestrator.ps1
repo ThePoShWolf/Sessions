@@ -18,8 +18,8 @@ switch ($Body.data.name) {
     # example with parameters
     'start-server' {
         Write-Host 'start-server command...'
-        if ($Body.data.psobject.properties.Name -contains 'options') {
-            $server = $Body.data.options[0].value
+        if ($Body.data.keys -contains 'options') {
+            $server = $Body.data['options'][0].value
             # code to start server...
         } else {
             $content = "Please specify a server with the server parameter."
