@@ -29,6 +29,8 @@ if ($Request.Body.type -eq 'warmup') {
         TimeStamp = $Request.Headers.'x-signature-timestamp'
         Body      = $Request.RawBody
     }
+    # Test-DiscordInteraction comes from Discord.NET.PowerShell
+    # Make sure that is in your requirements.psd1
     if (-not (Test-DiscordInteraction @intSplat)) {
         Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
                 StatusCode = [HttpStatusCode]::Unauthorized
