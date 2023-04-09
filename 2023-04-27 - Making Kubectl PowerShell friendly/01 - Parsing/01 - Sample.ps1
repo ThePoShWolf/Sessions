@@ -28,7 +28,7 @@ if ($out[0] -match '^(NAME|CURRENT)') {
 
     if ($objectCommands[$args[0]] -contains $args[1]) {
         # select the format type name
-        # dynamicall determined in the script
+        # dynamically determined in the script
         $typeName = "$($args[0])-$($args[1])"
         # manually determined for demo
         $typeName = 'get-pod'
