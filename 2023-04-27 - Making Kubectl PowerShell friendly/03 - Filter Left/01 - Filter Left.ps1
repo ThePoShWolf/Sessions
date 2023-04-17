@@ -7,6 +7,9 @@ k get pods | Where-Object { $_.Status -eq 'Running' }
 ### Kubectl
 kubectl get pods --field-selector=status.phase=Running
 
+### Even with specialK
+k get pods --field-selector=status.phase=Running
+
 
 ## Get non-running pods
 ### Where-Object
@@ -15,6 +18,8 @@ k get pods | Where-Object { $_.Status -ne 'Running' }
 ### Kubectl
 kubectl get pods --field-selector=status.phase!=Running
 
+### Even with specialK
+k get pods --field-selector=status.phase!=Running
 
 ## Finding field selector labels
 $pods = (k get pods -o json | ConvertFrom-Json).Items
@@ -26,7 +31,7 @@ $pods[0].Status.Phase
 ### No reasonable way without -o json. Maybe filter on name?
 k get pods | Where-Object { $_.Name -like '*myapp*' }
 
-### Kubectl
+### Kubectl (-l, --selector='')
 kubectl get pods -l app=myapp
 
 
@@ -37,10 +42,13 @@ kubectl get pods -l app=myapp
 ### kubectl
 kubectl get pods -n mynamespace
 
+### Note about specialK
+### -n mynamespace adds another header, not currently supported
+
 
 ## Only return pod name
 ### specialK
-(k get pods -l app=myapp --field-selector status.phase=Running | Where-Object { $_.Status -eq 'Running' }).name
+(k get pods -l app=myapp --field-selector status.phase=Running)[0].name
 
 ### kubectl
 kubectl get pods -l app=myapp --field-selector status.phase=Running -o=jsonpath='{.items..metadata.name}'
