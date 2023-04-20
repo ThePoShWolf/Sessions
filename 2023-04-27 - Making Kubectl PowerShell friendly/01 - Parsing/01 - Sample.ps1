@@ -1,3 +1,4 @@
+Import-Module specialK
 $out = @(
     'NAME                                    READY    STATUS     RESTARTS    AGE'
     'database-deployment-194a92db12-b2aat    1/1      Running    0           10d'
@@ -14,6 +15,7 @@ if ($out[0] -match '^(NAME|CURRENT)') {
 
     # view matches
     $m
+    $m.Matches
 
     # place semicolons
     $out = foreach ($line in $out) {
