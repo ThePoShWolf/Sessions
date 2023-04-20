@@ -66,3 +66,14 @@ k get nodes | Where-Object { $_.Status -eq 'Ready' }
 ### I'm not aware of solution without awk/grep
 
 #endregion
+
+#region Services
+
+## Get services by IP
+### Where-Object
+k get service | Where-Object { $_.'CLUSTER_IP' -eq '10.96.0.1' }
+
+### Kubectl
+### I'm not aware of solution without awk/grep
+
+#endregion
