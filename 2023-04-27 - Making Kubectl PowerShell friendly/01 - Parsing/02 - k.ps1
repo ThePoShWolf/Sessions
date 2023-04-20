@@ -1,5 +1,6 @@
 # This version is from April 2023.
 # Please see https://github.com/theposhwolf/specialk for latest version
+$script:objectCommands = Get-Content '.\2023-04-27 - Making Kubectl PowerShell friendly\02 - Formats\01 - formats.json' | ConvertFrom-Json -AsHashtable
 function k {
     $skipArgs = @(
         'exec', 'cp', 'scale', 'rollout', 'delete', 'logs'
@@ -9,7 +10,7 @@ function k {
     } else {
         $out = (& kubectl $args)
         # if the output starts with the typical headers
-        if ($out[0] -match '^(NAME|CURRENT)') {
+        if ($out[0] -match '^(NAME |NAMESPACE |CURRENT |LAST SEEN )') {
             # locate all positions to place semicolons
             # we are using the headers since some values may be null in the data
             if ($null -ne $out) {
