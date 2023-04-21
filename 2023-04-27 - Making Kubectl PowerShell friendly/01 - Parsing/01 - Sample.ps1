@@ -1,15 +1,17 @@
 Import-Module specialK
-$out = @(
-    'NAME                                    READY    STATUS     RESTARTS    AGE'
-    'database-deployment-194a92db12-b2aat    1/1      Running    0           10d'
-    'web-deployment-98ad9380dd-8brg3         1/1      Running    0           2d7h'
-)
 
 # If my local kubernetes cluster is working...
 $out = kubectl get pod
 $out
 $out.GetType()
 $out.Count
+
+# If it isn't
+$out = @(
+    'NAME                                    READY    STATUS     RESTARTS    AGE'
+    'database-deployment-194a92db12-b2aat    1/1      Running    0           10d'
+    'web-deployment-98ad9380dd-8brg3         1/1      Running    0           2d7h'
+)
 
 # headers
 $out[0]
