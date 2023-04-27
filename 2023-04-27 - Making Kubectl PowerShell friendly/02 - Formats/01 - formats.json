@@ -1,0 +1,17 @@
+{
+    "get": [
+        "pod",
+        "deployment",
+        "node",
+        "service"
+    ],
+    "top": [
+        "pod",
+        "node"
+    ],
+    "config": [
+        "get-contexts",
+        "get-clusters",
+        "get-users"
+    ]
+}
