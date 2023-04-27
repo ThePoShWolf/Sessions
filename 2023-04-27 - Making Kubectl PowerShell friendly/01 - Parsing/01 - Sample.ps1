@@ -4,6 +4,7 @@ Import-Module specialK
 $out = kubectl get pod
 $out
 $out.GetType()
+$out[0].GetType()
 $out.Count
 
 # If it isn't
@@ -48,7 +49,8 @@ if ($out[0] -match '^(NAME |NAMESPACE |CURRENT |LAST SEEN )') {
         # manually determined for demo
         $typeName = 'get-pod'
         # output
-        $out -replace ' +;', ';' | ForEach-Object { $_.Trim() } | ConvertFrom-Csv -Delimiter ';' | ForEach-Object { $_.PSObject.TypeNames.Insert(0, $typeName); $_ }
+        $out -replace ' +;', ';' | ForEach-Object { $_.Trim() } | ConvertFrom-Csv -Delimiter ';' | `
+                ForEach-Object { $_.PSObject.TypeNames.Insert(0, $typeName); $_ }
     } else {
         $out -replace ' +;', ';' | ForEach-Object { $_.Trim() } | ConvertFrom-Csv -Delimiter ';'
     }

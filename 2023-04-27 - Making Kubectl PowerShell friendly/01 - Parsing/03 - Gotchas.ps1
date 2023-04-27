@@ -9,11 +9,11 @@ $top
 $top[0].'MEMORY(bytes)'.GetType()
 
 # But you can still compare some of the data, at least in PowerShell 7
-$pods | Where-Object { $_.RESTARTS -lt 1 }
-$pods | Where-Object { $_.RESTARTS -eq 0 }
+$pods | Where-Object { $_.RESTARTS -lt 3 }
+$pods | Where-Object { $_.RESTARTS -eq 2 }
 
 # top compare
-$top | Where-Object { $_.'MEMORY(bytes)' -gt 20 }
+$top | Where-Object { $_.'MEMORY(bytes)' -gt 200 }
 
 # getting creative with top
 k top pod --sort-by=memory | Select-Object -First 1

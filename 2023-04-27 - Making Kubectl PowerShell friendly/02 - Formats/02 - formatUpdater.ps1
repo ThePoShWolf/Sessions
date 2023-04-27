@@ -2,7 +2,7 @@ param (
     [string]$OutPath
 )
 
-$commands = Get-Content $PSScriptRoot\..\src\formats.json | ConvertFrom-Json -AsHashtable
+$commands = Get-Content '.\2023-04-27 - Making Kubectl PowerShell friendly\02 - Formats\01 - formats.json' | ConvertFrom-Json -AsHashtable
 
 # Creating the views
 $addViews = foreach ($command in $commands.Keys) {
