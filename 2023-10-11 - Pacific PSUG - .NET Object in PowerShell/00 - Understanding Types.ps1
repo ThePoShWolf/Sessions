@@ -9,6 +9,9 @@
 # boolean
 $true
 
+# DateTime
+Get-Date
+
 # hashtable (dictionary)
 @{
     key = "value"
