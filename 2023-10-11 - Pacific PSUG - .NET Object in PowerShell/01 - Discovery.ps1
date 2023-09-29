@@ -43,3 +43,28 @@ New-Object -TypeName System.Management.Automation.CommandInfo
 # If it has a constructor, how do we know what to pass to it?
 
 [datetime]::new
+
+<#
+
+OverloadDefinitions
+-------------------
+datetime new(long ticks)
+|------|    |----------|
+Object type that is created
+            Parameter(s) for the method
+
+datetime new(long ticks, System.DateTimeKind kind)
+datetime new(int year, int month, int day)
+datetime new(int year, int month, int day, System.Globalization.Calendar calendar)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, System.Globalization.Calendar calendar, System.DateTimeKind kind)
+datetime new(int year, int month, int day, int hour, int minute, int second)
+datetime new(int year, int month, int day, int hour, int minute, int second, System.DateTimeKind kind)
+datetime new(int year, int month, int day, int hour, int minute, int second, System.Globalization.Calendar calendar)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, System.DateTimeKind kind)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, System.Globalization.Calendar calendar)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, System.DateTimeKind kind)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, System.Globalization.Calendar calendar)
+datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, System.Globalization.Calendar calendar, System.DateTimeKind kind)
+#>
