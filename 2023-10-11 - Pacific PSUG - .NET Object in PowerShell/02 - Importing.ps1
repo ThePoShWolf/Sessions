@@ -10,4 +10,6 @@ Get-Item ..\Discordant\lib\*.dll | ForEach-Object {
 
 # If you are importing into a module, you can instead use RequiredAssemblies in the manifest
 # Show Modrify build
+
 code ..\Modrify\build\Modrify
+
