@@ -67,3 +67,24 @@ datetime new(int year, int month, int day, int hour, int minute, int second, int
 datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, System.Globalization.Calendar calendar)
 datetime new(int year, int month, int day, int hour, int minute, int second, int millisecond, int microsecond, System.Globalization.Calendar calendar, System.DateTimeKind kind)
 #>
+
+# Discovering other methods and properties:
+
+[datetime]:: # tab, tab, tab, enter
+
+[datetime].GetMethods() | Format-Table Name
+
+[datetime]::Now
+
+# Another method
+
+[datetime]::DaysInMonth
+
+
+# Getting enum values
+
+[Microsoft.PowerShell.ExecutionPolicy]
+
+[Microsoft.PowerShell.ExecutionPolicy]:: # tab, tab, tab
+
+[Microsoft.PowerShell.ExecutionPolicy].GetEnumNames()
