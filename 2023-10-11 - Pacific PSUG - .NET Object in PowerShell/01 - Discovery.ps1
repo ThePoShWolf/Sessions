@@ -40,7 +40,7 @@ New-Object -TypeName System.Management.Automation.CommandInfo
 
 [System.Management.Automation.CommandInfo].GetConstructors().Name
 
-# If it has a constructor, how do we know what to pass to it?
+# If it has a constructor, how do we know what to pass to it? Or what it outputs?
 
 [datetime]::new
 
