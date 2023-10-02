@@ -50,8 +50,7 @@ OverloadDefinitions
 -------------------
 datetime new(long ticks)
 |------|    |----------|
-Object type that is created
-            Parameter(s) for the method
+ Output     Parameter(s)
 
 datetime new(long ticks, System.DateTimeKind kind)
 datetime new(int year, int month, int day)
