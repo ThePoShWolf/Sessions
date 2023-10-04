@@ -57,3 +57,15 @@ System.Threading.Tasks.Task LoginAsync(Discord.TokenType tokenType, string token
 # Lets log in
 
 $task = $client.LoginAsync([Discord.TokenType]::Bot, (Get-Content C:\tmp\bottoken.txt))
+$task
+$task.Wait()
+$task.Result
+
+# How do we know what happened?
+
+$client
+$client.LoginState
+
+# If we want to skip the async stuff, we can just do:
+
+$client.LoginAsync([Discord.TokenType]::Bot, (Get-Content C:\tmp\bottoken.txt)).Wait()
