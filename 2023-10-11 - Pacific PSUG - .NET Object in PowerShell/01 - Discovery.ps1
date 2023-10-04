@@ -24,6 +24,10 @@ New-Object -TypeName System.Diagnostics.Process
 
 New-Object -TypeName System.Management.Automation.CommandInfo
 
+# .NET type syntax
+
+[Namespace.Type]::Method('parameters')
+
 # Using the constructor
 
 [datetime]::new(2023, 10, 11)
