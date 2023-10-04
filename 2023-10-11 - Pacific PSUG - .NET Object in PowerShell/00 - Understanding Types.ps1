@@ -42,3 +42,7 @@ $obj.GetType()
 
 (Get-ChildItem)[0].GetType()
 (Get-ChildItem)[0].GetType().FullName
+
+# They can all use Get-Member
+
+"string" | Get-Member

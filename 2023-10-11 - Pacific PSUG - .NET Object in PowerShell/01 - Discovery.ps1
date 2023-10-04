@@ -36,6 +36,10 @@ New-Object -TypeName System.Management.Automation.CommandInfo
 
 # How do we know if it has a constructor?
 
+[datetime].GetType()
+
+[datetime] | Get-Member
+
 [datetime].GetConstructors().Name
 
 [System.Management.Automation.CommandInfo].GetConstructors().Name
@@ -82,6 +86,8 @@ datetime new(int year, int month, int day, int hour, int minute, int second, int
 
 
 # Getting enum values
+
+help Set-ExecutionPolicy -Parameter ExecutionPolicy
 
 [Microsoft.PowerShell.ExecutionPolicy]
 

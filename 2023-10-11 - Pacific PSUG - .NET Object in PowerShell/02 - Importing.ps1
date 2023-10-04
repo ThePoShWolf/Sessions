@@ -13,3 +13,4 @@ Get-Item ..\Discordant\lib\*.dll | ForEach-Object {
 
 code ..\Modrify\build\Modrify
 
+# Both ways make the .NET types available to the shell, not just module cmdlets
