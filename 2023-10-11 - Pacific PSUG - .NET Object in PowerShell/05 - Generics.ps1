@@ -55,7 +55,19 @@ $ht.Add($client, $arr)
 # List<T>
 
 [System.Collections.Generic.List]::new
-[System.Collections.Generic.List[string]]::new()
+
+# working lists
+
+$strList = [System.Collections.Generic.List[string]]::new()
+$strList.Add
+
 [System.Collections.Generic.List[int]]::new()
 [System.Collections.Generic.List[Discord.Rest.DiscordRestClient]]::new()
-[System.Collections.Generic.List[System.Object]]::new()
+
+# One list for anything 
+
+$list = [System.Collections.Generic.List[System.Object]]::new()
+$list.Add
+$list.Add($ht)
+$list.Add($client)
+$list
