@@ -88,10 +88,12 @@ datetime new(int year, int month, int day, int hour, int minute, int second, int
 
 [datetime]::DaysInMonth
 
+[datetime]::DaysInMonth(2023, 10)
+
 
 # Getting enum values
 
-help Set-ExecutionPolicy -Parameter ExecutionPolicy
+help Set-ExecutionPolicy -Parameter ExecutionPolicy 
 
 [Microsoft.PowerShell.ExecutionPolicy]
 
