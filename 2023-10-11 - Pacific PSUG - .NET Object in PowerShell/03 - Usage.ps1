@@ -58,6 +58,7 @@ System.Threading.Tasks.Task LoginAsync(Discord.TokenType tokenType, string token
 
 $task = $client.LoginAsync([Discord.TokenType]::Bot, (Get-Content C:\tmp\bottoken.txt))
 $task
+$task | Get-Member
 $task.Wait()
 $task.Result
 
@@ -68,4 +69,8 @@ $client.LoginState
 
 # If we want to skip the async stuff, we can just do:
 
-$client.LoginAsync([Discord.TokenType]::Bot, (Get-Content C:\tmp\bottoken.txt)).Wait()
+$client.LoginAsync([Discord.TokenType]::Bot, (Get-Content C:\tmp\bottoken.txt)).Wait().Result
+
+# We can even shorten the enum:
+
+$client.LoginAsync("Bot", (Get-Content C:\tmp\bottoken.txt)).Wait().Result
