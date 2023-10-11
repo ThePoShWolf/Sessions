@@ -37,6 +37,7 @@ $obj.GetType()
 # Example of a built-in .NET type
 (Get-Process)[0]
 (Get-Process)[0].GetType()
+(Get-Process)[0].GetType().FullName
 
 # How to get an object's type
 
@@ -46,3 +47,14 @@ $obj.GetType()
 # They can all use Get-Member
 
 "string" | Get-Member
+42 | Get-Member
+$true | Get-Member
+Get-Date | Get-Member
+@{
+    key = "value"
+} | Get-Member
+[pscustomobject]@{
+    Property = "Value"
+} | Get-Member
+(Get-Process)[0] | Get-Member
+(Get-ChildItem)[0] | Get-Member
