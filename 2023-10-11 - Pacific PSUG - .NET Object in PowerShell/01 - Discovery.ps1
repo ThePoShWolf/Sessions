@@ -3,7 +3,7 @@
 # Using a cmdlet
 
 Get-Date
-(Get-Date).GetType()
+(Get-Date).GetType().FullName
 
 Get-Item '.\2023-10-11 - Pacific PSUG - .NET Object in PowerShell'
 (Get-Item '.\2023-10-11 - Pacific PSUG - .NET Object in PowerShell').GetType()
@@ -18,7 +18,7 @@ Get-Command Get-Command
 
 New-Object -TypeName datetime -ArgumentList 2023, 10, 11
 
-New-Object -TypeName System.IO.DirectoryInfo -ArgumentList '.\2023-10-11 - Pacific PSUG - .NET Object in PowerShell'
+New-Object -TypeName IO.DirectoryInfo -ArgumentList '.\2023-10-11 - Pacific PSUG - .NET Object in PowerShell'
 
 New-Object -TypeName System.Diagnostics.Process
 
@@ -32,7 +32,7 @@ New-Object -TypeName System.Management.Automation.CommandInfo
 
 [datetime]::new(2023, 10, 11)
 
-[System.IO.DirectoryInfo]::new('.\2023-10-11 - Pacific PSUG - .NET Object in PowerShell')
+[IO.DirectoryInfo]::new('.\2023-10-11 - Pacific PSUG - .NET Object in PowerShell')
 
 [System.Diagnostics.Process]::new()
 
@@ -78,7 +78,7 @@ datetime new(int year, int month, int day, int hour, int minute, int second, int
 
 # Discovering other methods and properties:
 
-[datetime]:: # tab, tab, tab, enter
+[datetime]:: # tab, tab, tab, enter / Ctrl+Spacebar
 
 [datetime].GetMethods() | Format-Table Name
 
@@ -86,17 +86,33 @@ datetime new(int year, int month, int day, int hour, int minute, int second, int
 
 # Another method
 
-[datetime]::DaysInMonth
+[datetime]::DaysInMonth | gm
 
 [datetime]::DaysInMonth(2023, 10)
 
+# using reflection
+
+$method = [datetime]::DaysInMonth
+$method.Invoke(2023,10)
+
+# other static examples
+
+[DateTimeOffset]::Now.ToUnixTimeSeconds()
+
+[DateTimeOffset]::FromUnixTimeSeconds
+
+[DateTimeOffset]::FromUnixTimeSeconds(1697075821)
 
 # Getting enum values
 
-help Set-ExecutionPolicy -Parameter ExecutionPolicy 
+help Set-ExecutionPolicy -Parameter ExecutionPolicy
 
 [Microsoft.PowerShell.ExecutionPolicy]
 
-[Microsoft.PowerShell.ExecutionPolicy]:: # tab, tab, tab
+[Microsoft.PowerShell.ExecutionPolicy]:: # tab, tab, tab / Ctrl-Space
 
 [Microsoft.PowerShell.ExecutionPolicy].GetEnumNames()
+
+# One liner
+
+(Get-Command Set-ExecutionPolicy).Parameters['ExecutionPolicy'].ParameterType.GetEnumNames()

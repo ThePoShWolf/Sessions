@@ -71,3 +71,9 @@ $list.Add
 $list.Add($ht)
 $list.Add($client)
 $list
+
+# old:
+[System.Collections.ArrayList]
+
+# new:
+[System.Collections.Generic.List[System.Object]]
