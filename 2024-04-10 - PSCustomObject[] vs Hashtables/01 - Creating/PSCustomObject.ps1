@@ -37,7 +37,7 @@ $objs = 2024..2030 | ForEach-Object {
 $objs | Sort-Object -Property Date
 
 # Nested properties
-$obj = [pscustomobject]@{
+$nestedObj = [pscustomobject]@{
     Event    = 'PowerShell Summit 2024'
     Date     = [pscustomobject]@{
         Year  = 2024
@@ -49,6 +49,4 @@ $obj = [pscustomobject]@{
         State = 'WA'
     }
 }
-
-# Cleanup
-Remove-Variable obj, objs
+$nestedObj

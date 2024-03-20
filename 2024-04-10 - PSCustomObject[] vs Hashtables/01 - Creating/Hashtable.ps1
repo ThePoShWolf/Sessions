@@ -21,15 +21,15 @@ $ht | Sort-Object -Property Name
 $ht.GetEnumerator() | Sort-Object -Property Name
 
 # Ordered
-$ht = [ordered]@{
+$orderedHt = [ordered]@{
     Event    = 'PowerShell Summit 2024'
     Date     = '2024-04-10'
     Location = 'Bellevue, WA'
 }
-$ht
+$orderedHt
 
 # Nested
-$ht = @{
+$nestedHt = @{
     Event    = 'PowerShell Summit 2024'
     Date     = @{
         Year  = 2024
@@ -43,7 +43,7 @@ $ht = @{
 }
 
 # Large hashtable
-$ht = @{
+$largeHt = @{
     '2024-04-10' = @{
         Event    = 'PowerShell Summit 2024'
         Date     = @{
@@ -69,9 +69,10 @@ $ht = @{
         }
     }
 }
+$largeHt
 
 # As an array
-$ht = @{
+$arrayHt = @{
     Events = @(
         @{
             Event    = 'PowerShell Summit 2024'
@@ -99,6 +100,4 @@ $ht = @{
         }
     )
 }
-
-# Cleanup
-Remove-Variable ht
+$arrayHt
