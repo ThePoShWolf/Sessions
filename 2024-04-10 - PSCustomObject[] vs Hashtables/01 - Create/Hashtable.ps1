@@ -101,3 +101,20 @@ $arrayHt = @{
     )
 }
 $arrayHt
+
+# Array of hashtables
+$arrayOfHts = 2024..2030 | ForEach-Object {
+    @{
+        Event    = "PowerShell Summit $_"
+        Date     = @{
+            Year  = $_
+            Month = 4
+            Day   = 10
+        }
+        Location = @{
+            City  = 'Bellevue'
+            State = 'WA'
+        }
+    }
+}
+$arrayOfHts
