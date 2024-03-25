@@ -41,8 +41,9 @@ $nestedHt = @{
         State = 'WA'
     }
 }
+$nestedHt
 
-# Large hashtable
+# Large(ish) hashtable
 $largeHt = @{
     '2024-04-10' = @{
         Event    = 'PowerShell Summit 2024'
