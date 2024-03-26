@@ -52,8 +52,8 @@ $nestedObj = [pscustomobject]@{
 $nestedObj
 
 # From JSON
-$data = Get-Content .\MOCK_DATA.json | ConvertFrom-Json
+$data = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json
 
 # Faster than hashtables?
-Measure-Command { Get-Content .\MOCK_DATA.json | ConvertFrom-Json -AsHashtable }
-Measure-Command { Get-Content .\MOCK_DATA.json | ConvertFrom-Json }
+Measure-Command { Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable }
+Measure-Command { Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json }
