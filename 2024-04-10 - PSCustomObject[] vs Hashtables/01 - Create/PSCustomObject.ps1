@@ -50,3 +50,10 @@ $nestedObj = [pscustomobject]@{
     }
 }
 $nestedObj
+
+# From JSON
+$data = Get-Content .\MOCK_DATA.json | ConvertFrom-Json
+
+# Faster than hashtables?
+Measure-Command { Get-Content .\MOCK_DATA.json | ConvertFrom-Json -AsHashtable }
+Measure-Command { Get-Content .\MOCK_DATA.json | ConvertFrom-Json }

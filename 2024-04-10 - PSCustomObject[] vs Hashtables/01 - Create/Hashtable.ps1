@@ -119,3 +119,6 @@ $arrayOfHts = 2024..2030 | ForEach-Object {
     }
 }
 $arrayOfHts
+
+# From JSON
+$data = Get-Content .\MOCK_DATA.json | ConvertFrom-Json -AsHashtable
