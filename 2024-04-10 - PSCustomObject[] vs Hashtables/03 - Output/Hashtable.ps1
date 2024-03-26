@@ -19,3 +19,23 @@ $arrayOfHts | Sort-Object -Property Date -Descending
 $arrayOfHts | ForEach-Object {
     [PSCustomObject]$_
 }
+
+# or
+$arrayOfHts | ForEach-Object {
+    New-Object -TypeName PSObject -Property $_
+}
+
+# Which is more efficient?
+Measure-Command {
+    1..10000 | ForEach-Object { $arrayOfHts | ForEach-Object {
+            [PSCustomObject]$_
+        }
+    }
+}
+
+Measure-Command {
+    1..10000 | ForEach-Object { $arrayOfHts | ForEach-Object {
+            New-Object -TypeName PSObject -Property $_
+        }
+    }
+}
