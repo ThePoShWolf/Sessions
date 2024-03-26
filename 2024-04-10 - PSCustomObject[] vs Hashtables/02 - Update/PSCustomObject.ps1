@@ -18,7 +18,7 @@ $obj.PSObject.Properties.Add([PSNoteProperty]::new('Address', '123 Main st'))
 $obj
 
 # Remove property
-$obj.PSOject.Properties.Remove('Address')
+$obj.PSObject.Properties.Remove('Address')
 $obj
 
 # Finding properties

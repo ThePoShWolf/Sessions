@@ -9,7 +9,7 @@ $users2 = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA
 }
 
 # Find matching users using PSObjects
-# Takes about 68s on my laptop
+# Takes about 68s-76s on my laptop
 Measure-Command {
     $report = foreach ($user1 in $users1) {
         foreach ($user2 in $users2) {
@@ -54,6 +54,18 @@ foreach ($user in $users2) {
 Measure-Command {
     $report = foreach ($email in $users1ht.Keys) {
         if ($users2ht.ContainsKey($email)) {
+            [PSCustomObject]@{
+                id1 = $users1ht[$email].id
+                id2 = $users2ht[$email].id
+            }
+        }
+    }
+}
+
+# Alternate method using -contains
+Measure-Command {
+    $report = foreach ($email in $users1ht.Keys) {
+        if ($users2ht.Keys -contains $email) {
             [PSCustomObject]@{
                 id1 = $users1ht[$email].id
                 id2 = $users2ht[$email].id

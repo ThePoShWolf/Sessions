@@ -1,4 +1,4 @@
-# Empty PSCustomObject
+# Empty PSObject
 $obj = New-Object -TypeName PSObject
 $obj
 
@@ -32,6 +32,7 @@ $objs = 2024..2030 | ForEach-Object {
         Location = 'Bellevue, WA'
     }
 }
+$objs
 
 # Sorting
 $objs | Sort-Object -Property Date

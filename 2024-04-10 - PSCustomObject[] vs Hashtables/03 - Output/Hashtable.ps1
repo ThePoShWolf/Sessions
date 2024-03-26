@@ -15,6 +15,10 @@ $arrayOfHts | Select-Object Event
 $arrayOfHts | Sort-Object -Property Date
 $arrayOfHts | Sort-Object -Property Date -Descending
 
+# Writing to files
+$arrayOfHts | ConvertTo-Json | Out-File -FilePath .\output.json
+$arrayOfHts | Export-Csv -Path .\output.csv -NoTypeInformation
+
 # Elegant
 $arrayOfHts | ForEach-Object {
     [PSCustomObject]$_

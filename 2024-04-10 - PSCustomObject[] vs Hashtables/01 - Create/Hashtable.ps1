@@ -102,6 +102,7 @@ $arrayHt = @{
     )
 }
 $arrayHt
+$arrayHt.Events
 
 # Array of hashtables
 $arrayOfHts = 2024..2030 | ForEach-Object {

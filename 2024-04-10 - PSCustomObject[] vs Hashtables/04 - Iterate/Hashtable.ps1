@@ -35,3 +35,5 @@ foreach ($item in $arrayOfHts) {
     "Date: $($item.Date)"
     "Location: $($item.Location)"
 }
+
+# add note about updating hashtables while iterating
