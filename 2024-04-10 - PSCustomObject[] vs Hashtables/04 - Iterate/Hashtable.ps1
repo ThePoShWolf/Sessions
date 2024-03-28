@@ -29,11 +29,28 @@ Measure-Command {
     }
 }
 
+# You can also use foreach
+foreach ($key in $ht.Keys) {
+    "Key: $key"
+    "Value: $($ht[$key])"
+    #"$key - $($ht[$key])"
+}
+
+# Or a for loop
+for ($x = 0; $x -lt $ht.Count; $x++) {
+    "Key: $($ht.Keys[$x])"
+    "Value: $($ht[$ht.Keys[$x]])"
+    #"$(ht.Keys[$i]) - $($ht[$ht.Keys[$i]])"
+}
+
+# Just don't try to modify the hashtable while iterating
+foreach ($key in $ht.Keys) {
+    $ht.Remove($key)
+}
+
 # Iterate over an array of hashtables
 foreach ($item in $arrayOfHts) {
     "Event: $($item.Event)"
     "Date: $($item.Date)"
     "Location: $($item.Location)"
 }
-
-# add note about updating hashtables while iterating
