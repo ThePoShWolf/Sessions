@@ -12,4 +12,6 @@ $objs | Format-Table
 $objs | ConvertTo-Json | Out-File -FilePath .\output.json
 $objs | Export-Csv -Path .\output.csv -NoTypeInformation
 
-# add note about formats and types
+# Output formats
+Get-Process | Select-Object -first 5
+Get-Service | Select-Object -first 5
