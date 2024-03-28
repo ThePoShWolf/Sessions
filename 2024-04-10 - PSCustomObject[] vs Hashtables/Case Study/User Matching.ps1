@@ -8,6 +8,20 @@ $users2 = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA
     $_
 }
 
+# Find matching users using Where-Object
+# Takes about 6.5m on my laptop
+Measure-Command {
+    $report = foreach ($user1 in $users1) {
+        $user2 = $users2 | Where-Object email -eq $user1.email | Select-Object -First 1
+        if ($user2) {
+            [PSCustomObject]@{
+                id1 = $user1.id
+                id2 = $user2.id
+            }
+        }
+    }
+}
+
 # Find matching users using PSObjects
 # Takes about 68s-76s on my laptop
 Measure-Command {
@@ -25,15 +39,23 @@ Measure-Command {
     }
 }
 
-# Try with Where-Object
-# Takes about 6.5m on my laptop
+# What if we used a list and removed each item from users2 as we go?
+[System.Collections.Generic.List[psobject]]$users2list = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json | ForEach-Object {
+    $_.id = 10001 - $_.id
+    $_
+}
 Measure-Command {
     $report = foreach ($user1 in $users1) {
-        $user2 = $users2 | Where-Object email -eq $user1.email | Select-Object -First 1
-        if ($user2) {
-            [PSCustomObject]@{
-                id1 = $user1.id
-                id2 = $user2.id
+        for ($x = 0; $x -lt $users2list.Count; $x++) {
+            $user2 = $users2list[$x]
+            # match on email
+            if ($user1.email -eq $user2.email) {
+                [PSCustomObject]@{
+                    id1 = $user1.id
+                    id2 = $user2.id
+                }
+                $users2list.RemoveAt($x)
+                break
             }
         }
     }
@@ -49,7 +71,7 @@ $users2ht = @{}
 foreach ($user in $users2) {
     $users2ht[$user.email] = $user
 }
-
+    
 # Find matching users using hashtables
 Measure-Command {
     $report = foreach ($email in $users1ht.Keys) {
@@ -58,6 +80,20 @@ Measure-Command {
                 id1 = $users1ht[$email].id
                 id2 = $users2ht[$email].id
             }
+        }
+    }
+}
+
+# Is it faster if we also remove keys as we use them?
+# Find matching users using hashtables
+Measure-Command {
+    $report = foreach ($email in $users1ht.Keys) {
+        if ($users2ht.ContainsKey($email)) {
+            [PSCustomObject]@{
+                id1 = $users1ht[$email].id
+                id2 = $users2ht[$email].id
+            }
+            $users2ht.Remove($email)
         }
     }
 }
