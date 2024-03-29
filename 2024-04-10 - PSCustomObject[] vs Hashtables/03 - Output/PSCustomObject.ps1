@@ -15,3 +15,6 @@ $objs | Export-Csv -Path .\output.csv -NoTypeInformation
 # Output formats
 Get-Process | Select-Object -first 5
 Get-Service | Select-Object -first 5
+
+# Fancily add a type to a non-typed object
+$obj.PSObject.TypeNames.Insert(0, 'MyType')

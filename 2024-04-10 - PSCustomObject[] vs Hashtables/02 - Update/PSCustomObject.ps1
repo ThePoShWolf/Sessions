@@ -13,6 +13,9 @@ $obj | Add-Member -NotePropertyMembers @{
 }
 $obj
 
+# .PSObject has metadata about the object
+$obj.PSObject
+
 # Add property using Add() method
 $obj.PSObject.Properties.Add([PSNoteProperty]::new('Address', '123 Main st'))
 $obj

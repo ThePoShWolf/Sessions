@@ -27,3 +27,10 @@ while ($x -lt $objs.Count) {
     "Location: $($objs[$x].Location)"
     $x++
 }
+
+# Iterate through the properties
+foreach ($item in $objs) {
+    foreach ($property in $item.PSObject.Properties) {
+        "$($property.Name): $($property.Value)"
+    }
+}

@@ -27,6 +27,7 @@ $orderedHt = [ordered]@{
     Location = 'Bellevue, WA'
 }
 $orderedHt
+$orderedHt.GetType()
 
 # Nested
 $nestedHt = @{
@@ -122,4 +123,5 @@ $arrayOfHts = 2024..2030 | ForEach-Object {
 $arrayOfHts
 
 # From JSON
-$data = Get-Content .\MOCK_DATA.json | ConvertFrom-Json -AsHashtable
+$data = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable
+$data[0]

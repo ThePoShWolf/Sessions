@@ -36,7 +36,7 @@ foreach ($key in $ht.Keys) {
     #"$key - $($ht[$key])"
 }
 
-# Or a for loop
+# Or a for loop, maybe?
 for ($x = 0; $x -lt $ht.Count; $x++) {
     "Key: $($ht.Keys[$x])"
     "Value: $($ht[$ht.Keys[$x]])"
@@ -45,6 +45,7 @@ for ($x = 0; $x -lt $ht.Count; $x++) {
 
 # Just don't try to modify the hashtable while iterating
 foreach ($key in $ht.Keys) {
+    Write-Host "Removing key $key..."
     $ht.Remove($key)
 }
 
