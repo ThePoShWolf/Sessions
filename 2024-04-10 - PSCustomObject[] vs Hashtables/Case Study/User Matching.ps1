@@ -1,5 +1,5 @@
 # Users from platform 1
-$users1 = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json
+$users1 = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json | Select-Object -first 5000
 
 # Users from platform 2
 # reversing the ID order to simulate a different platform
