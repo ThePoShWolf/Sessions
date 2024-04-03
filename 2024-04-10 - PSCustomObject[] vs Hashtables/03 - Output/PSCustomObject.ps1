@@ -7,6 +7,10 @@ $obj | Format-List
 $objs
 $objs | Format-List
 $objs | Format-Table
+$objs | Out-GridView
+
+# Using Select-Object and a hash table to rename properties
+$objs | Select-Object Event, @{Name = 'Date'; Expression = { [datetime]$_.Date } }, Location
 
 # Output to various types
 $objs | ConvertTo-Json | Out-File -FilePath .\output.json
@@ -18,3 +22,4 @@ Get-Service | Select-Object -first 5
 
 # Fancily add a type to a non-typed object
 $obj.PSObject.TypeNames.Insert(0, 'MyType')
+$obj
