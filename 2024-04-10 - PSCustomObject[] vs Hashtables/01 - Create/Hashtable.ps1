@@ -16,7 +16,11 @@ $ht = @{
 }
 $ht
 
-# Sorting
+# Or inline
+$ht = @{ Event = 'PowerShell Summit 2024'; Date = '2024-04-10'; Location = 'Bellevue, WA' }
+$ht
+
+# Sorting properties
 $ht | Sort-Object -Property Name
 $ht.GetEnumerator() | Sort-Object -Property Name
 
@@ -122,6 +126,20 @@ $arrayOfHts = 2024..2030 | ForEach-Object {
 }
 $arrayOfHts
 
+# Sorting an array of hashtables by a nested property
+$arrayOfHts | Sort-Object -Property @{ Expression = { $_.Date.Year } } -Descending
+
 # From JSON
 $data = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable
 $data[0]
+
+# Any object type as a key
+$ht = @{
+    $true            = 'True'
+    $false           = 'False'
+    1                = 'One'
+    'One'            = 1
+    [datetime]::Now  = 'Now'
+    (Get-Process)[0] = (Get-Service)[0]
+}
+$ht

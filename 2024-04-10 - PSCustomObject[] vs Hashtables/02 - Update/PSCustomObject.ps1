@@ -26,6 +26,7 @@ $obj
 
 # Finding properties
 $obj.PSObject.Properties.Name
+$obj | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name
 
 # Testing for a property
 $obj.PSObject.Properties.Name -contains 'Location'

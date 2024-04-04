@@ -24,3 +24,9 @@ Get-Service | Select-Object -first 5
 Update-FormatData -AppendPath '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\03 - Output\SampleView.ps1xml'
 $obj.PSObject.TypeNames.Insert(0, 'MyType')
 $obj
+
+# Convert to hashtable
+$hashtable = @{}
+foreach ( $prop in $obj.PSObject.Properties.Name ) {
+    $hashtable[$prop] = $myObject.$prop
+}

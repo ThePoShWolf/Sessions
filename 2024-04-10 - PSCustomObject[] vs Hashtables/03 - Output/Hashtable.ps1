@@ -1,4 +1,7 @@
-# Simple
+# Select multiple keys
+$ht['Event', 'Location']
+
+# Simple, full output
 $ht
 
 # But doesn't really look great with an array of hashtables
@@ -7,6 +10,11 @@ $arrayOfHts
 # Even with formatters
 $arrayOfHts | Format-List
 $arrayOfHts | Format-Table
+
+# JSON is good though
+# make sure you use -Depth if needed
+$ht | ConvertTo-Json
+$arrayOfHts | ConvertTo-Json
 
 # Select works (but doesn't in 5.1)
 $arrayOfHts | Select-Object Event

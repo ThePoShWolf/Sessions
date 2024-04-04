@@ -24,6 +24,10 @@ $obj = [pscustomobject]@{
 }
 $obj
 
+# Or even inline
+$obj = [pscustomobject]@{ Event = 'PowerShell Summit 2024'; Date = '2024-04-10'; Location = 'Bellevue, WA' }
+$obj
+
 # An array of PSCustomObjects
 $objs = 2024..2030 | ForEach-Object {
     [pscustomobject]@{
