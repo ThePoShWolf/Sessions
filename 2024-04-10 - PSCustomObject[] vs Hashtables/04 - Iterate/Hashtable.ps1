@@ -55,3 +55,84 @@ foreach ($item in $arrayOfHts) {
     "Date: $($item.Date)"
     "Location: $($item.Location)"
 }
+
+# Nested hashtable
+$veryNestedHt = [ordered]@{
+    a = [ordered]@{
+        a1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+        b1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+        c1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+    }
+    b = [ordered]@{
+        a1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+        b1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+        c1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+    }
+    c = [ordered]@{
+        a1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+        b1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+        c1 = @{
+            a2 = 'a3'
+            b2 = 'b3'
+            c2 = 'c3'
+        }
+    }
+}
+
+# Iterate over a very nested hashtable with long notation
+foreach ($key in $veryNestedHt.Keys) {
+    "Key: $key"
+    foreach ($subKey in $veryNestedHt[$key].Keys) {
+        "SubKey: $subKey"
+        foreach ($subSubKey in $veryNestedHt[$key][$subKey].Keys) {
+            "SubSubKey: $subSubKey"
+            "SubSubValue: $($veryNestedHt[$key][$subKey][$subSubKey])"
+        }
+    }
+}
+
+# Iterate over a very nested hashtable with shorter notation
+foreach ($key in $veryNestedHt.Keys) {
+    "Key: $key"
+    $nestedHt = $veryNestedHt[$key]
+    foreach ($nestedHtKey in $nestedHt.Keys) {
+        "NestedHtKey: $nestedHtKey"
+        $nestedHt1 = $nestedHt[$nestedHtKey]
+        foreach ($nestedHt1Key in $nestedHt1.Keys) {
+            "NestedHt1Key: $nestedHt1Key"
+            "NestedHt1Value: $($nestedHt1[$nestedHt1Key])"
+        }
+    }
+}
