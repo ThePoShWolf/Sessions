@@ -111,6 +111,7 @@ Measure-Command {
 }
 
 # Alternate method using -contains
+# ~2-3s
 Measure-Command {
     $report = foreach ($email in $users1ht.Keys) {
         if ($users2ht.Keys -contains $email) {

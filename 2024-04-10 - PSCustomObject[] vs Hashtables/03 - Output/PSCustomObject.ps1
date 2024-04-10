@@ -7,7 +7,6 @@ $obj | Format-List
 $objs
 $objs | Format-List
 $objs | Format-Table
-$objs | Out-GridView
 
 # Using Select-Object and a hash table to rename properties
 $objs | Select-Object Event, @{Name = 'Date'; Expression = { [datetime]$_.Date } }, Location
@@ -17,8 +16,8 @@ $objs | ConvertTo-Json | Out-File -FilePath .\output.json
 $objs | Export-Csv -Path .\output.csv -NoTypeInformation
 
 # Output formats
-Get-Process | Select-Object -first 5
-Get-Service | Select-Object -first 5
+Get-Process | Select-Object -first 2
+Get-Service | Select-Object -first 2
 
 # Fancily add a type to a non-typed object
 Update-FormatData -AppendPath '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\03 - Output\SampleView.ps1xml'
@@ -28,5 +27,6 @@ $obj
 # Convert to hashtable
 $hashtable = @{}
 foreach ( $prop in $obj.PSObject.Properties.Name ) {
-    $hashtable[$prop] = $myObject.$prop
+    $hashtable[$prop] = $obj.$prop
 }
+$hashtable

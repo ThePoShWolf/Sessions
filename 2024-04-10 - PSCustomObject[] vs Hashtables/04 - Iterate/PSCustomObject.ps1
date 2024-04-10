@@ -29,8 +29,6 @@ while ($x -lt $objs.Count) {
 }
 
 # Iterate through the properties
-foreach ($item in $objs) {
-    foreach ($property in $item.PSObject.Properties) {
-        "$($property.Name): $($property.Value)"
-    }
+foreach ($property in $obj.PSObject.Properties) {
+    "$($property.Name): $($property.Value)"
 }

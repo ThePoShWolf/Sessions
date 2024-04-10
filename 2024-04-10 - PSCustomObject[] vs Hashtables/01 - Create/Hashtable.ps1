@@ -2,6 +2,10 @@
 $ht = New-Object -TypeName hashtable
 $ht
 
+# Alternate empty hashtable
+$ht = @{}
+$ht
+
 # Adding values
 $ht.Add('Event', 'PowerShell Summit 2024')
 $ht.Add('Date', '2024-04-10')
@@ -21,8 +25,8 @@ $ht = @{ Event = 'PowerShell Summit 2024'; Date = '2024-04-10'; Location = 'Bell
 $ht
 
 # Sorting properties
-$ht | Sort-Object -Property Name
-$ht.GetEnumerator() | Sort-Object -Property Name
+$ht | Sort-Object -Property Name -Descending
+$ht.GetEnumerator() | Sort-Object -Property Name -Descending
 
 # Ordered
 $orderedHt = [ordered]@{
@@ -134,7 +138,7 @@ $data = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.j
 $data[0]
 
 # Any object type as a key
-$ht = @{
+$validHt = @{
     $true            = 'True'
     $false           = 'False'
     1                = 'One'
@@ -142,4 +146,4 @@ $ht = @{
     [datetime]::Now  = 'Now'
     (Get-Process)[0] = (Get-Service)[0]
 }
-$ht
+$validHt

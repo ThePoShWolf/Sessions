@@ -1,9 +1,6 @@
 # Select multiple keys
 $ht['Event', 'Location']
 
-# Simple, full output
-$ht
-
 # But doesn't really look great with an array of hashtables
 $arrayOfHts
 
@@ -18,10 +15,6 @@ $arrayOfHts | ConvertTo-Json
 
 # Select works (but doesn't in 5.1)
 $arrayOfHts | Select-Object Event
-
-# Sorting
-$arrayOfHts | Sort-Object -Property Date
-$arrayOfHts | Sort-Object -Property Date -Descending
 
 # Writing to files
 $arrayOfHts | ConvertTo-Json | Out-File -FilePath .\output.json

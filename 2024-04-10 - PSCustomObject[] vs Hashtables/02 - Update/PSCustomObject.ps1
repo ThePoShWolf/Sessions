@@ -2,6 +2,10 @@
 $obj.Location = 'Seattle, WA'
 $obj
 
+# Can't add a property using dot notation
+$obj.MilitaryTime = '0900'
+$obj
+
 # Add property using Add-Member
 $obj | Add-Member -MemberType NoteProperty -Name MilitaryTime -Value '0900'
 $obj

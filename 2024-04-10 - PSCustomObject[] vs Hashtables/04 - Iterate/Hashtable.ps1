@@ -2,14 +2,12 @@
 $ht.GetEnumerator() | ForEach-Object {
     "Key: $($_.Key)"
     "Value: $($_.Value)"
-    #"$($_.Key) - $($_.Value)"
 }
 
 # Iterate over values in a hashtable using Keys
 $ht.Keys | ForEach-Object {
     "Key: $_"
     "Value: $($ht[$_])"
-    #"$_ - $($ht[$_])"
 }
 
 # Which is faster?
@@ -33,14 +31,12 @@ Measure-Command {
 foreach ($key in $ht.Keys) {
     "Key: $key"
     "Value: $($ht[$key])"
-    #"$key - $($ht[$key])"
 }
 
 # Or a for loop, maybe?
 for ($x = 0; $x -lt $ht.Count; $x++) {
     "Key: $($ht.Keys[$x])"
     "Value: $($ht[$ht.Keys[$x]])"
-    #"$(ht.Keys[$i]) - $($ht[$ht.Keys[$i]])"
 }
 
 # Just don't try to modify the hashtable while iterating
@@ -48,6 +44,7 @@ foreach ($key in $ht.Keys) {
     Write-Host "Removing key $key..."
     $ht.Remove($key)
 }
+$ht
 
 # Iterate over an array of hashtables
 foreach ($item in $arrayOfHts) {

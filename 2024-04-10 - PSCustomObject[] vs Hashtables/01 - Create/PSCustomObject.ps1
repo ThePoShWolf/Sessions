@@ -39,7 +39,7 @@ $objs = 2024..2030 | ForEach-Object {
 $objs
 
 # Sorting
-$objs | Sort-Object -Property Date
+$objs | Sort-Object -Property Date -Descending
 
 # Nested properties
 $nestedObj = [pscustomobject]@{
@@ -61,9 +61,11 @@ $data = Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.j
 $data[0]
 
 # Faster than hashtables?
+# Hashtable
 Measure-Command { 
     1..10 | ForEach-Object { Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable }
 } | Select-Object TotalMilliseconds
+# PSCustomObject
 Measure-Command {
     1..10 | ForEach-Object { Get-Content '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\MOCK_DATA.json' | ConvertFrom-Json }
 } | Select-Object TotalMilliseconds
