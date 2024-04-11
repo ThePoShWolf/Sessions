@@ -34,6 +34,7 @@ $obj | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name
 
 # Testing for a property
 $obj.PSObject.Properties.Name -contains 'Location'
+$obj.PSObject.Properties['Location']
 
 # Accessing a property from a variable
 $property = 'Location'

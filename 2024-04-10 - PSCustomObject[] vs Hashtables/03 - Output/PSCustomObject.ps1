@@ -22,6 +22,7 @@ Get-Service | Select-Object -first 2
 # Fancily add a type to a non-typed object
 Update-FormatData -AppendPath '.\2024-04-10 - PSCustomObject`[`] vs Hashtables\03 - Output\SampleView.ps1xml'
 $obj.PSObject.TypeNames.Insert(0, 'MyType')
+$obj.PSTypeNames.Insert(0, 'MyType')
 $obj
 
 # Convert to hashtable
