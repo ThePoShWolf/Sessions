@@ -26,12 +26,12 @@ $ht
 $ht.Keys
 
 # Testing for a property
-$ht.ContainsKey('Location')
+$ht.Contains('Location')
 $ht.Keys -contains 'Location'
 
 # Which is more efficient?
 Measure-Command {
-    0..10000 | ForEach-Object { $ht.ContainsKey('Location') }
+    0..10000 | ForEach-Object { $ht.Contains('Location') }
 }
 Measure-Command {
     0..10000 | ForEach-Object { $ht.Keys -contains 'Location' }

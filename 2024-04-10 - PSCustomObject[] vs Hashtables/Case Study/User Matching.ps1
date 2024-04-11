@@ -87,7 +87,7 @@ foreach ($user in $users2) {
 # Find matching users using hashtables
 Measure-Command {
     $report = foreach ($email in $users1ht.Keys) {
-        if ($users2ht.ContainsKey($email)) {
+        if ($users2ht.Contains($email)) {
             [PSCustomObject]@{
                 id1 = $users1ht[$email].id
                 id2 = $users2ht[$email].id
@@ -100,7 +100,7 @@ Measure-Command {
 # Find matching users using hashtables
 Measure-Command {
     $report = foreach ($email in $users1ht.Keys) {
-        if ($users2ht.ContainsKey($email)) {
+        if ($users2ht.Contains($email)) {
             [PSCustomObject]@{
                 id1 = $users1ht[$email].id
                 id2 = $users2ht[$email].id
