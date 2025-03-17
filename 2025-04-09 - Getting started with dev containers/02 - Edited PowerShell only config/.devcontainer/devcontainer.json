@@ -4,6 +4,7 @@
     "name": "PowerShell",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "image": "mcr.microsoft.com/powershell:debian-12",
+    // https://containers.dev/features
     "features": {
         "ghcr.io/devcontainers/features/common-utils:2": {}
     },
@@ -11,6 +12,7 @@
     // Configure tool-specific properties.
     "customizations": {
         // Configure properties specific to VS Code.
+        // https://containers.dev/supporting#visual-studio-code
         "vscode": {
             // Set *default* container specific settings.json values on container create.
             "settings": {

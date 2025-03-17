@@ -11,6 +11,7 @@
         }
     },
     // Configure tool-specific properties.
+    // https://containers.dev/supporting#visual-studio-code
     "customizations": {
         "vscode": {
             "extensions": [
