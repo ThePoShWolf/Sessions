@@ -1,6 +1,8 @@
-# input the values of each container
-$apiContainer = '0f95b4a6ec7c'
-$psContainer = 'a1c69da7174e'
+# input the id or name of each container
+# can get values by running docker ps
+# or in the container by running hostname
+$apiContainer = '45b17ea9a67a'
+$psContainer = '367429cdd36a'
 $networkName = 'pssummit'
 
 # create the network
