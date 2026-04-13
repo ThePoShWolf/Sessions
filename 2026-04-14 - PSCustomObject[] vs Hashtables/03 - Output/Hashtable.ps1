@@ -18,7 +18,9 @@ $arrayOfHts | Select-Object Event
 
 # Writing to files
 $arrayOfHts | ConvertTo-Json | Out-File -FilePath .\output.json
+Get-Content .\output.json
 $arrayOfHts | Export-Csv -Path .\output.csv -NoTypeInformation
+Get-Content .\output.csv
 
 # Elegant
 $arrayOfHts | ForEach-Object {

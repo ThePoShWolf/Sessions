@@ -1,5 +1,5 @@
 # Update property using dot notation
-$obj.Location = 'Seattle, WA'
+$obj.Location = 'Eugene, OR'
 $obj
 
 # Can't add a property using dot notation

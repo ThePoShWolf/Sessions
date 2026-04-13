@@ -1,31 +1,31 @@
-# Update property using hashtable notation
+# Update key using hashtable notation
 $ht['Location'] = 'Redmond, WA'
 $ht
 
-# Update property using dot notation
+# Update key using dot notation
 $ht.Location = 'Eugene, OR'
 $ht
 
-# Add property using hashtable notation
+# Add key using hashtable notation
 $ht['MilitaryTime'] = '0900'
 $ht
 
-# Add property using dot notation
+# Add key using dot notation
 $ht.Time = '9:00 AM'
 $ht
 
-# Add property using Add method
+# Add key using Add method
 $ht.Add('TimeZone', 'PST')
 $ht
 
-# Remove property
+# Remove key
 $ht.Remove('TimeZone')
 $ht
 
-# Finding properties
+# Finding key
 $ht.Keys
 
-# Testing for a property
+# Testing for a key
 $ht.ContainsKey('Location')
 $ht.Contains('Location')
 $ht.Keys -contains 'Location'
@@ -41,7 +41,7 @@ Measure-Command {
     0..10000 | ForEach-Object { $ht.Keys -contains 'Location' }
 } | Select-Object TotalMilliseconds
 
-# Accessing a property from a variable
+# Accessing a key from a variable
 $property = 'Location'
 $ht.$property
 $ht[$property]

@@ -13,11 +13,13 @@ $objs | Select-Object Event, @{Name = 'Date'; Expression = { [datetime]$_.Date }
 
 # Output to various types
 $objs | ConvertTo-Json | Out-File -FilePath .\output.json
+Get-Content .\output.json
 $objs | Export-Csv -Path .\output.csv -NoTypeInformation
+Get-Content .\output.csv
 
 # Output formats
-Get-Process | Select-Object -first 2
-Get-Service | Select-Object -first 2
+Get-Process | Select-Object -First 2
+Get-Service | Select-Object -First 2
 
 # Fancily add a type to a non-typed object
 Update-FormatData -AppendPath '.\03 - Output\SampleView.ps1xml'

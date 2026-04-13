@@ -147,7 +147,7 @@ Measure-Command {
 }
 
 # Recommended pattern: index once, then do O(1) lookups
-# Copilots recommendation
+# Copilot's recommendation
 Measure-Command {
     $users2Index = @{}
     foreach ($user in $users2) {

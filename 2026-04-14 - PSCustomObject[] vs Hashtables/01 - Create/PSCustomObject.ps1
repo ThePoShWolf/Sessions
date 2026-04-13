@@ -58,7 +58,7 @@ $nestedObj
 
 # From JSON
 $data = Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json
-$data[0]
+$data[0..5]
 
 # Faster than hashtables?
 # Hashtable

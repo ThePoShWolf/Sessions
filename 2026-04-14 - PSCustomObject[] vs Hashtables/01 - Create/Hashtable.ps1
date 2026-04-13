@@ -66,7 +66,7 @@ $largeHt = @{
             State = 'WA'
         }
     }
-    '2026-04-11' = @{
+    '2026-04-15' = @{
         Event    = 'PowerShell Summit 2026'
         Date     = @{
             Year  = 2026
@@ -135,9 +135,9 @@ $arrayOfHts | Sort-Object -Property @{ Expression = { $_.Date.Year } } -Descendi
 
 # From JSON
 $data = Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable
-$data[0]
+$data[0..5]
 
-# Any object type as a key
+# Any object type as a key or value
 $validHt = @{
     $true            = 'True'
     $false           = 'False'
