@@ -31,15 +31,23 @@ $ht.Contains('Location')
 $ht.Keys -contains 'Location'
 
 # Which is more efficient?
-Measure-Command {
-    0..10000 | ForEach-Object { $ht.ContainsKey('Location') }
-} | Select-Object TotalMilliseconds
-Measure-Command {
-    0..10000 | ForEach-Object { $ht.Contains('Location') }
-} | Select-Object TotalMilliseconds
-Measure-Command {
-    0..10000 | ForEach-Object { $ht.Keys -contains 'Location' }
-} | Select-Object TotalMilliseconds
+[PSCustomObject]@{
+    ContainsKey = Measure-Command {
+        foreach ($x in 1..100000) {
+            $ht.ContainsKey('Location')
+        }
+    } | Select-Object -ExpandProperty TotalMilliseconds
+    Contains    = Measure-Command {
+        foreach ($x in 1..100000) {
+            $ht.Contains('Location')
+        }
+    } | Select-Object -ExpandProperty TotalMilliseconds
+    '-Contains' = Measure-Command {
+        foreach ($x in 1..100000) {
+            $ht.Keys -contains 'Location'
+        }
+    } | Select-Object -ExpandProperty TotalMilliseconds
+}
 
 # Accessing a key from a variable
 $property = 'Location'

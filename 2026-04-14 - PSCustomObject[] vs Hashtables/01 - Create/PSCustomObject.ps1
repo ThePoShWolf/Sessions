@@ -61,11 +61,14 @@ $data = Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json
 $data[0..5]
 
 # Faster than hashtables?
-# Hashtable
-Measure-Command { 
-    1..10 | ForEach-Object { Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable }
-} | Select-Object TotalMilliseconds
-# PSCustomObject
-Measure-Command {
-    1..10 | ForEach-Object { Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json }
-} | Select-Object TotalMilliseconds
+
+[PSCustomObject]@{
+    # Hashtable
+    HashTable      = Measure-Command {
+        1..5 | ForEach-Object { Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json -AsHashtable }
+    } | Select-Object -ExpandProperty TotalMilliseconds
+    # PSCustomObject
+    PSCustomObject = Measure-Command {
+        1..5 | ForEach-Object { Get-Content '.\MOCK_DATA.json' | ConvertFrom-Json }
+    } | Select-Object -ExpandProperty TotalMilliseconds
+}

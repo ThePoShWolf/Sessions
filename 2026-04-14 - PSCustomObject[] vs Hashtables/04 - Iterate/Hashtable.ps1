@@ -11,21 +11,24 @@ $ht.Keys | ForEach-Object {
 }
 
 # Which is faster?
-Measure-Command {
-    1..10000 | ForEach-Object { $ht.GetEnumerator() | ForEach-Object {
-            "Key: $($_.Key)"
-            "Value: $($_.Value)"
+[pscustomobject]@{
+    GetEnumerator = Measure-Command {
+        foreach ($x in 1..10000) {
+            foreach ($item in $ht.GetEnumerator()) {
+                "Key: $($item.Key)"
+                "Value: $($item.Value)"
+            }
         }
-    }
-} | Select-Object TotalMilliseconds
-
-Measure-Command {
-    1..10000 | ForEach-Object { $ht.Keys | ForEach-Object {
-            "Key: $_"
-            "Value: $($ht[$_])"
+    } | Select-Object -ExpandProperty TotalMilliseconds
+    Keys          = Measure-Command {
+        foreach ($x in 1..10000) {
+            foreach ($key in $ht.Keys) {
+                "Key: $key"
+                "Value: $($ht[$key])"
+            }
         }
-    }
-} | Select-Object TotalMilliseconds
+    } | Select-Object -ExpandProperty TotalMilliseconds
+}
 
 # You can also use foreach
 foreach ($key in $ht.Keys) {

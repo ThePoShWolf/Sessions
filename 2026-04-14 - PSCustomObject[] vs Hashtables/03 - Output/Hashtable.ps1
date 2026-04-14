@@ -33,16 +33,19 @@ $arrayOfHts | ForEach-Object {
 }
 
 # Which is more efficient?
-Measure-Command {
-    1..10000 | ForEach-Object { $arrayOfHts | ForEach-Object {
-            [PSCustomObject]$_
+[pscustomobject]@{
+    PSCustomObject = Measure-Command {
+        foreach ($x in 1..1000) {
+            foreach ($item in $arrayOfHts) {
+                [PSCustomObject]$item
+            }
         }
-    }
-} | Select-Object TotalMilliseconds
-
-Measure-Command {
-    1..10000 | ForEach-Object { $arrayOfHts | ForEach-Object {
-            New-Object -TypeName PSObject -Property $_
+    } | Select-Object -ExpandProperty TotalMilliseconds
+    NewObject      = Measure-Command {
+        foreach ($x in 1..1000) {
+            foreach ($item in $arrayOfHts) {
+                New-Object -TypeName PSObject -Property $item
+            }
         }
-    }
-} | Select-Object TotalMilliseconds
+    } | Select-Object -ExpandProperty TotalMilliseconds
+}
