@@ -164,4 +164,36 @@ Measure-Command {
     }
 }
 
-$report | Select-Object -First 10
+# LINQ Join - purpose-built for matching two collections
+# Efficient O(n + m) performance
+Measure-Command {
+    $report = [System.Linq.Enumerable]::Join(
+        $users1,
+        $users2,
+        [Func[object, string]] { param($x) $x.email },  # key selector for users1
+        [Func[object, string]] { param($x) $x.email },  # key selector for users2
+        [Func[object, object, object]] { param($x, $y) 
+            [PSCustomObject]@{ 
+                id1 = $x.id
+                id2 = $y.id 
+            } 
+        }  # result selector
+    )
+}
+
+# LINQ using ToDictionary + Where (similar to hashtable approach)
+Measure-Command {
+    $users2Index = [System.Linq.Enumerable]::ToDictionary(
+        $users2,
+        [Func[object, string]] { param($x) $x.email }
+    )
+    
+    $report = foreach ($user1 in $users1) {
+        if ($users2Index.ContainsKey($user1.email)) {
+            [PSCustomObject]@{
+                id1 = $user1.id
+                id2 = $users2Index[$user1.email].id
+            }
+        }
+    }
+}
